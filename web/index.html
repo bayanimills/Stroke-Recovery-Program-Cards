@@ -872,8 +872,9 @@ function renderCardOptionsCategories() {
                             <button onclick="deleteExercise('${cat}', ${idx})" style="padding: 0.25rem 0.5rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #dc2626;" title="Delete exercise">Delete</button>
                         </div>
                     </div>
-                    <ol style="margin: 0; padding-left: 1.25rem; color: #475569; font-size: 0.875rem;">
-                        ${ex.steps.map((step, si) => `<li style="margin-bottom: 0.25rem; padding: 0.125rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <ol style="margin: 0; padding-left: 1.25rem; color: #475569; font-size: 0.875rem;" id="stepList_${cat}_${idx}">
+                        ${ex.steps.map((step, si) => `<li draggable="true" data-cat="${cat}" data-ex="${idx}" data-step="${si}" style="margin-bottom: 0.25rem; padding: 0.375rem 0.25rem; display: flex; align-items: center; gap: 0.5rem; border-radius: 0.25rem; transition: background 0.15s; cursor: grab;" ondragstart="onStepDragStart(event)" ondragover="onStepDragOver(event)" ondrop="onStepDrop(event)" ondragend="onStepDragEnd(event)">
+                            <span style="color: #94a3b8; font-size: 0.75rem; cursor: grab;" title="Drag to reorder">⠿</span>
                             <span style="flex: 1; cursor: pointer;" onclick="editStep('${cat}', ${idx}, ${si})" title="Click to edit">${step}</span>
                             <button onclick="deleteStep('${cat}', ${idx}, ${si})" style="padding: 0.125rem 0.375rem; background: none; border: 1px solid #e2e8f0; border-radius: 0.25rem; cursor: pointer; font-size: 0.6875rem; color: #94a3b8;" title="Remove step">x</button>
                         </li>`).join('')}
@@ -886,6 +887,47 @@ function renderCardOptionsCategories() {
     `).join('');
     const totalEx = Object.values(exercises).reduce((sum, d) => sum + d.list.length, 0);
     document.getElementById('cardOptionsSummary').textContent = `${Object.keys(exercises).length} categories, ${totalEx} exercises total`;
+}
+
+// Drag & drop step reordering
+let draggedStep = null;
+
+function onStepDragStart(e) {
+    draggedStep = e.currentTarget;
+    e.currentTarget.style.opacity = '0.4';
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+function onStepDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const li = e.currentTarget;
+    if (li !== draggedStep && li.tagName === 'LI') {
+        li.style.background = '#e0f2fe';
+    }
+}
+
+function onStepDrop(e) {
+    e.preventDefault();
+    const target = e.currentTarget;
+    target.style.background = '';
+    if (!draggedStep || target === draggedStep || target.tagName !== 'LI') return;
+    const cat = draggedStep.dataset.cat;
+    const exIdx = parseInt(draggedStep.dataset.ex);
+    const fromIdx = parseInt(draggedStep.dataset.step);
+    const toIdx = parseInt(target.dataset.step);
+    if (cat !== target.dataset.cat || exIdx !== parseInt(target.dataset.ex)) return;
+    const steps = exercises[cat].list[exIdx].steps;
+    const [moved] = steps.splice(fromIdx, 1);
+    steps.splice(toIdx, 0, moved);
+    renderCardOptionsCategories();
+    renderQuadExerciseSelection();
+    renderLargeCardCheckboxes();
+}
+
+function onStepDragEnd(e) {
+    e.currentTarget.style.opacity = '1';
+    document.querySelectorAll('ol[id^="stepList_"] li').forEach(li => { li.style.background = ''; });
 }
 
 showPage('dashboard');
