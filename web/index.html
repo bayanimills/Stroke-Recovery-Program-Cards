@@ -19,7 +19,7 @@
             </div>
         </div>
         <div style="display: flex; gap: 1rem;">
-            <button onclick="showPage('dashboard')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="dashboardBtn">Bed Number</button>
+            <button onclick="showPage('dashboard')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="dashboardBtn">Select Bed</button>
             <button onclick="showPage('create')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="createBtn">Print Cards</button>
             <button onclick="showPage('tracking')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="trackingBtn">Tracking Sheet</button>
             <button onclick="showPage('cardOptions')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="cardOptionsBtn">Card Options</button>
@@ -32,7 +32,7 @@
 <div id="dashboardPage" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Bed Number</h1>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Select Bed</h1>
             <p style="color: #64748b; margin: 0;">Select a bed number to manage recovery card sets</p>
         </div>
 
@@ -67,19 +67,19 @@
                 onBedNumberChange(value);
             }
             </script>
-            <div id="bedNumberInfo" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; text-align: center;">
+            <div id="bedNumberInfo" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; text-align: center; margin-top: 1.5rem;">
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 1rem 0;">Bed <span id="bedNumberDisplay"></span></h3>
                 <div style="display: flex; gap: 1rem; justify-content: center;">
                     <button onclick="showPage('create')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Create Card Set</button>
                     <button onclick="showPage('tracking')" style="padding: 0.75rem 1.5rem; background: white; color: #10b981; border: 2px solid #10b981; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">View Tracking Sheet</button>
                 </div>
             </div>
-            <div id="bedNumberEmpty" style="text-align: center; padding: 2rem; border: 2px dashed #cbd5e1; border-radius: 0.5rem;">
+            <div id="bedNumberEmpty" style="text-align: center; padding: 2rem; border: 2px dashed #cbd5e1; border-radius: 0.5rem; margin-top: 1.5rem;">
                 <div style="font-size: 3rem; margin-bottom: 1rem;">🛏️</div>
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">No bed selected</h3>
-                <p style="color: #64748b; margin: 0 0 1rem 0;">Select a bed number above to get started</p>
-                <p style="color: #94a3b8; margin: 0; font-size: 0.8125rem; font-style: italic; max-width: 32rem; margin-left: auto; margin-right: auto;">A recovery tracking system can be built in — including mobile-based goal-setting, progress dashboards, and caregiver notifications to support each patient's journey.</p>
+                <p style="color: #64748b; margin: 0;">Select a bed number above to get started</p>
             </div>
+            <p style="color: #94a3b8; margin: 1.5rem 0 0 0; font-size: 0.8125rem; font-style: italic; text-align: center; max-width: 32rem; margin-left: auto; margin-right: auto;">A recovery tracking system can be built in — including mobile-based goal-setting, progress dashboards, and caregiver notifications to support each patient's journey.</p>
         </div>
     </div>
 </div>
