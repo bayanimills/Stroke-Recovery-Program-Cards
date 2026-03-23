@@ -67,9 +67,9 @@
                 onBedNumberChange(value);
             }
             </script>
-            <div id="bedNumberInfo" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem;">
+            <div id="bedNumberInfo" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem; text-align: center;">
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 1rem 0;">Bed <span id="bedNumberDisplay"></span></h3>
-                <div style="display: flex; gap: 1rem;">
+                <div style="display: flex; gap: 1rem; justify-content: center;">
                     <button onclick="showPage('create')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Create Card Set</button>
                     <button onclick="showPage('tracking')" style="padding: 0.75rem 1.5rem; background: white; color: #10b981; border: 2px solid #10b981; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">View Tracking Sheet</button>
                 </div>
@@ -77,7 +77,8 @@
             <div id="bedNumberEmpty" style="text-align: center; padding: 2rem; border: 2px dashed #cbd5e1; border-radius: 0.5rem;">
                 <div style="font-size: 3rem; margin-bottom: 1rem;">🛏️</div>
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">No bed selected</h3>
-                <p style="color: #64748b; margin: 0;">Select a bed number above to get started</p>
+                <p style="color: #64748b; margin: 0 0 1rem 0;">Select a bed number above to get started</p>
+                <p style="color: #94a3b8; margin: 0; font-size: 0.8125rem; font-style: italic; max-width: 32rem; margin-left: auto; margin-right: auto;">A recovery tracking system can be built in — including mobile-based goal-setting, progress dashboards, and caregiver notifications to support each patient's journey.</p>
             </div>
         </div>
     </div>
@@ -538,23 +539,23 @@ function updateFormatPreview() {
             const data = exercises[cat];
             const ex = data.list[selections[cat]];
             const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 0.4375rem; color: #1e293b; margin-bottom: 0.0625rem;">${i+1}. ${s}</div>`).join('');
-            quadCells += `<div style="border: 1px solid #1e293b; padding: 0.375rem; display: flex; flex-direction: column;">
+            quadCells += `<div style="border: 1px solid ${data.hex}; padding: 0.375rem; display: flex; flex-direction: column;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
                     <div style="display: flex; align-items: center; gap: 0.25rem;">
                         <span style="font-size: 0.75rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
                         <div>
-                            <div style="font-size: 0.4375rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
-                            <div style="font-size: 0.375rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                            <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                            <div style="font-size: 0.5rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                         </div>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 0.375rem; font-weight: 700; color: #1e293b;">GOAL</div>
-                        <div style="width: 1rem; height: 1rem; border: 1.5px solid #1e293b; margin-top: 0.0625rem;"></div>
+                        <div style="font-size: 0.375rem; font-weight: 700; color: ${data.hex};">GOAL</div>
+                        <div style="width: 1rem; height: 1rem; border: 1.5px solid ${data.hex}; margin-top: 0.0625rem;"></div>
                     </div>
                 </div>
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                     ${stepsHtml}
-                    <div style="font-size: 0.4375rem; font-weight: 700; color: #1e293b; margin-top: 0.125rem;">REPEAT until GOAL</div>
+                    <div style="font-size: 0.4375rem; font-weight: 700; color: ${data.hex}; margin-top: 0.125rem;">REPEAT until GOAL</div>
                 </div>
             </div>`;
         });
@@ -571,18 +572,18 @@ function updateFormatPreview() {
                             <div style="display: flex; align-items: center; gap: 0.25rem;">
                                 <span style="font-size: 1.25rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
                                 <div>
-                                    <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
-                                    <div style="font-size: 0.5rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                                    <div style="font-size: 0.75rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                                    <div style="font-size: 0.6875rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                                 </div>
                             </div>
                             <div style="text-align: center;">
-                                <div style="font-size: 0.5rem; font-weight: 700; color: #1e293b;">GOAL</div>
-                                <div style="width: 1.25rem; height: 1.25rem; border: 2px solid #1e293b; margin-top: 0.0625rem;"></div>
+                                <div style="font-size: 0.5rem; font-weight: 700; color: ${data.hex};">GOAL</div>
+                                <div style="width: 1.25rem; height: 1.25rem; border: 2px solid ${data.hex}; margin-top: 0.0625rem;"></div>
                             </div>
                         </div>
                         <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                             ${stepsHtml}
-                            <div style="font-size: 0.5625rem; font-weight: 700; color: #1e293b; margin-top: 0.1875rem;">REPEAT until GOAL</div>
+                            <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; margin-top: 0.1875rem;">REPEAT until GOAL</div>
                         </div>
                     </div>`);
                 }
@@ -595,15 +596,82 @@ function updateFormatPreview() {
 
 function generateAndPrint() {
     const format = document.querySelector('input[name="outputFormat"]:checked').value;
-    if (format === 'single') {
-        let count = 0;
-        Object.entries(largeCardSelections).forEach(([cat, exMap]) => {
-            Object.values(exMap).forEach(v => { if (v) count++; });
+    const goalText = document.getElementById('cardOptionsGoal') ? document.getElementById('cardOptionsGoal').value : 'Do this 10 times';
+    const printWin = window.open('', '_blank');
+
+    if (format === 'quadrant') {
+        // Build 2x2 quad card page
+        let quadCells = '';
+        Object.keys(exercises).forEach(cat => {
+            const data = exercises[cat];
+            const ex = data.list[selections[cat]];
+            const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 18pt; color: #1e293b; margin-bottom: 0.25rem;">${i+1}. ${s}</div>`).join('');
+            quadCells += `<div style="border: 2px solid ${data.hex}; padding: 1.5rem; display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2.5rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                        <div>
+                            <div style="font-size: 22pt; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                            <div style="font-size: 20pt; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 14pt; font-weight: 700; color: ${data.hex};">GOAL</div>
+                        <div style="width: 3rem; height: 3rem; border: 3px solid ${data.hex}; margin-top: 0.25rem;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                    ${stepsHtml}
+                    <div style="font-size: 18pt; font-weight: 700; color: ${data.hex}; margin-top: 0.5rem;">REPEAT until GOAL</div>
+                </div>
+            </div>`;
         });
-        alert(`Generating ${count} large card${count !== 1 ? 's' : ''} (one per page)\n\nOpening print dialog...`);
+        printWin.document.write(`<!DOCTYPE html><html><head><title>SRP Cards - Quad</title>
+            <style>
+            @page { size: landscape; margin: 0.5cm; }
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+            </style></head><body>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100vw; height: 100vh; box-sizing: border-box;">
+                ${quadCells}
+            </div></body></html>`);
     } else {
-        alert(`Generating quad card (4 on 1 page)\n\nOpening print dialog...`);
+        // Build one page per selected large card
+        let pages = '';
+        Object.entries(exercises).forEach(([cat, data]) => {
+            data.list.forEach((ex, idx) => {
+                if (!largeCardSelections[cat][idx]) return;
+                const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 24pt; color: #1e293b; margin-bottom: 0.5rem;">${i+1}. ${s}</div>`).join('');
+                pages += `<div style="page-break-after: always; width: 100vw; height: 100vh; box-sizing: border-box; padding: 2rem; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <span style="font-size: 4rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                            <div>
+                                <div style="font-size: 30pt; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                                <div style="font-size: 28pt; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 18pt; font-weight: 700; color: ${data.hex};">GOAL</div>
+                            <div style="width: 4rem; height: 4rem; border: 3px solid ${data.hex}; margin-top: 0.25rem;"></div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                        ${stepsHtml}
+                        <div style="font-size: 24pt; font-weight: 700; color: ${data.hex}; margin-top: 1rem;">REPEAT until GOAL</div>
+                    </div>
+                </div>`;
+            });
+        });
+        printWin.document.write(`<!DOCTYPE html><html><head><title>SRP Cards - Large</title>
+            <style>
+            @page { size: landscape; margin: 1cm; }
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+            </style></head><body>${pages}</body></html>`);
     }
+
+    printWin.document.close();
+    printWin.focus();
+    printWin.print();
 }
 
 function onBedNumberChange(value) {
@@ -657,8 +725,8 @@ function renderTrackingSheet() {
         data.list.forEach(ex => { if (ex.name.length > longestName.length) longestName = ex.name; });
     });
 
-    const dayCellStyle = 'border: 1px solid #94a3b8; padding: 0; background: #f1f5f9; text-align: center; width: 1.1em; max-width: 1.1em; font-size: 0.5em;';
-    const dayEmptyStyle = 'border: 1px solid #94a3b8; padding: 0; text-align: center; height: 0.75rem; width: 1.1em; max-width: 1.1em;';
+    const dayCellStyle = 'border: 1px solid #94a3b8; padding: 0; background: #f1f5f9; text-align: center; font-size: 0.5em;';
+    const dayEmptyStyle = 'border: 1px solid #94a3b8; padding: 0; text-align: center; height: 0.75rem;';
     const exColStyle = 'border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; font-weight: 500; white-space: nowrap;';
 
     let html = '';
