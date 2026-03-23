@@ -11,7 +11,7 @@
             </div>
         </div>
         <div style="display: flex; gap: 1rem;">
-            <button onclick="showPage('dashboard')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="dashboardBtn">My Patients</button>
+            <button onclick="showPage('dashboard')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="dashboardBtn">Bed Number</button>
             <button onclick="showPage('create')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="createBtn">Create Sheet</button>
             <button onclick="showPage('tracking')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="trackingBtn">Tracking Sheet</button>
             <button onclick="showPage('help')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="helpBtn">Help</button>
@@ -23,15 +23,41 @@
 <div id="dashboardPage" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">My Patients</h1>
-            <p style="color: #64748b; margin: 0;">Manage recovery card sets for each patient</p>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Bed Number</h1>
+            <p style="color: #64748b; margin: 0;">Select a bed number to manage recovery card sets</p>
         </div>
 
-        <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem; text-align: center; border: 2px dashed #cbd5e1;">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">👥</div>
-            <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">No patients yet</h3>
-            <p style="color: #64748b; margin: 0 0 1rem 0;">Create your first recovery card set to get started</p>
-            <button onclick="showPage('create')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Create First Card Set</button>
+        <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <label style="font-size: 0.875rem; font-weight: 600; color: #1e293b;">Select Bed Number</label>
+                <select id="bedNumberSelect" onchange="onBedNumberChange(this.value);" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; background: white; min-width: 200px;">
+                    <option value="">-- Select Bed --</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="B3">B3</option>
+                    <option value="B4">B4</option>
+                    <option value="B5">B5</option>
+                    <option value="B6">B6</option>
+                    <option value="B7">B7</option>
+                    <option value="B8">B8</option>
+                    <option value="B9">B9</option>
+                    <option value="B10">B10</option>
+                    <option value="B11">B11</option>
+                    <option value="B12">B12</option>
+                </select>
+            </div>
+            <div id="bedNumberInfo" style="display: none; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.5rem; padding: 1.5rem;">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 1rem 0;">Bed <span id="bedNumberDisplay"></span></h3>
+                <div style="display: flex; gap: 1rem;">
+                    <button onclick="showPage('create')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Create Card Set</button>
+                    <button onclick="showPage('tracking')" style="padding: 0.75rem 1.5rem; background: white; color: #10b981; border: 2px solid #10b981; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">View Tracking Sheet</button>
+                </div>
+            </div>
+            <div id="bedNumberEmpty" style="text-align: center; padding: 2rem; border: 2px dashed #cbd5e1; border-radius: 0.5rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🛏️</div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">No bed selected</h3>
+                <p style="color: #64748b; margin: 0;">Select a bed number above to get started</p>
+            </div>
         </div>
     </div>
 </div>
@@ -49,11 +75,26 @@
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                 <div style="width: 2rem; height: 2rem; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">1</div>
                 <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Patient Information</h2>
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">(all fields optional)</span>
             </div>
             <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
                 <div style="flex: 1; min-width: 180px;">
                     <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Bed Number</label>
-                    <input type="text" id="patientName" placeholder="e.g., B12" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem;" />
+                    <select id="patientName" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; background: white;">
+                        <option value="">-- Select Bed --</option>
+                        <option value="B1">B1</option>
+                        <option value="B2">B2</option>
+                        <option value="B3">B3</option>
+                        <option value="B4">B4</option>
+                        <option value="B5">B5</option>
+                        <option value="B6">B6</option>
+                        <option value="B7">B7</option>
+                        <option value="B8">B8</option>
+                        <option value="B9">B9</option>
+                        <option value="B10">B10</option>
+                        <option value="B11">B11</option>
+                        <option value="B12">B12</option>
+                    </select>
                 </div>
                 <div style="flex: 0 0 120px;">
                     <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Age</label>
@@ -125,42 +166,49 @@
     <div style="max-width: 900px; margin: 0 auto;">
         <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center;">
             <div>
-                <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Weekly Tracking Sheet</h1>
-                <p style="color: #64748b; margin: 0;">Print this sheet to track daily exercise completion</p>
+                <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Monthly Tracking Sheet</h1>
+                <p style="color: #64748b; margin: 0;">Print this sheet to track daily exercise completion for the month</p>
             </div>
             <button onclick="printTrackingSheet();" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Print Tracking Sheet</button>
         </div>
 
         <div style="background: white; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-            <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Bed Number</label>
-            <input type="text" id="trackingPatientName" placeholder="e.g., B12" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; max-width: 400px;" />
+            <div style="display: flex; gap: 1.5rem; align-items: end; flex-wrap: wrap;">
+                <div>
+                    <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Bed Number</label>
+                    <select id="trackingPatientName" onchange="updateTrackingBedDisplay();" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; background: white; min-width: 200px;">
+                        <option value="">-- Select Bed --</option>
+                        <option value="B1">B1</option>
+                        <option value="B2">B2</option>
+                        <option value="B3">B3</option>
+                        <option value="B4">B4</option>
+                        <option value="B5">B5</option>
+                        <option value="B6">B6</option>
+                        <option value="B7">B7</option>
+                        <option value="B8">B8</option>
+                        <option value="B9">B9</option>
+                        <option value="B10">B10</option>
+                        <option value="B11">B11</option>
+                        <option value="B12">B12</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Month / Year</label>
+                    <input type="month" id="trackingMonth" onchange="updateTrackingBedDisplay();" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem;" />
+                </div>
+            </div>
         </div>
 
         <!-- Tracking Sheet Preview -->
-        <div id="trackingSheetPreview" style="background: white; border-radius: 0.75rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <div id="trackingSheetPreview" style="background: white; border-radius: 0.75rem; padding: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); display: none;">
             <div style="text-align: center; margin-bottom: 1.5rem;">
                 <h2 style="font-size: 1.5rem; font-weight: 700; color: #1e293b; margin: 0 0 0.25rem 0;">Stroke Recovery Program</h2>
-                <p style="color: #64748b; margin: 0; font-size: 0.875rem;">Weekly Exercise Tracking Sheet</p>
-                <p style="color: #1e293b; font-weight: 600; margin: 0.5rem 0 0 0;" id="trackingNameDisplay">Bed #: _______________</p>
-                <p style="color: #64748b; margin: 0.25rem 0 0 0; font-size: 0.8125rem;">Week of: _______________</p>
+                <p style="color: #64748b; margin: 0; font-size: 0.875rem;">Monthly Exercise Tracking Sheet</p>
+                <p style="color: #1e293b; font-weight: 600; margin: 0.5rem 0 0 0;" id="trackingNameDisplay"></p>
+                <p style="color: #64748b; margin: 0.25rem 0 0 0; font-size: 0.8125rem;" id="trackingMonthDisplay"></p>
             </div>
 
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
-                <thead>
-                    <tr>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: left; width: 28%;">Exercise</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Mon</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Tue</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Wed</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Thu</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Fri</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Sat</th>
-                        <th style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9; text-align: center;">Sun</th>
-                    </tr>
-                </thead>
-                <tbody id="trackingTableBody">
-                </tbody>
-            </table>
+            <div id="trackingTablesContainer" style="overflow-x: auto;"></div>
 
             <div style="margin-top: 1.5rem; border: 2px solid #cbd5e1; border-radius: 0.5rem; padding: 1rem;">
                 <p style="font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">Caregiver Notes</p>
@@ -175,6 +223,12 @@
                 <span>Mark each box when exercise is completed</span>
                 <span>Stroke Recovery Cards - Recovery in Motion</span>
             </div>
+        </div>
+
+        <div id="trackingNoSelection" style="background: white; border-radius: 0.75rem; padding: 3rem; text-align: center; border: 2px dashed #cbd5e1;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+            <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">No bed number selected</h3>
+            <p style="color: #64748b; margin: 0;">Select a bed number above to preview the tracking sheet</p>
         </div>
     </div>
 </div>
@@ -326,7 +380,13 @@ function showPage(page) {
         updateFormatPreview();
     }
     if (page === 'tracking') {
-        renderTrackingSheet();
+        // Set default month to current month
+        const monthInput = document.getElementById('trackingMonth');
+        if (!monthInput.value) {
+            const now = new Date();
+            monthInput.value = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+        }
+        updateTrackingBedDisplay();
     }
 }
 
@@ -383,46 +443,118 @@ function generateAndPrint() {
 
 function saveForLater() {
     const name = document.getElementById('patientName').value || 'Unnamed';
-    alert(`✓ Saved Bed #${name} sheet\n\nYou can access it from "My Patients" page`);
+    alert(`✓ Saved Bed #${name} sheet\n\nYou can access it from "Bed Number" page`);
+}
+
+function onBedNumberChange(value) {
+    const info = document.getElementById('bedNumberInfo');
+    const empty = document.getElementById('bedNumberEmpty');
+    const display = document.getElementById('bedNumberDisplay');
+    if (value) {
+        display.textContent = value;
+        info.style.display = 'block';
+        empty.style.display = 'none';
+        // Sync bed number to Create Sheet and Tracking Sheet
+        document.getElementById('patientName').value = value;
+        document.getElementById('trackingPatientName').value = value;
+        updateTrackingBedDisplay();
+    } else {
+        info.style.display = 'none';
+        empty.style.display = 'block';
+    }
+}
+
+function updateTrackingBedDisplay() {
+    const bed = document.getElementById('trackingPatientName').value;
+    const monthInput = document.getElementById('trackingMonth');
+    const preview = document.getElementById('trackingSheetPreview');
+    const noSelection = document.getElementById('trackingNoSelection');
+    const nameDisplay = document.getElementById('trackingNameDisplay');
+    const monthDisplay = document.getElementById('trackingMonthDisplay');
+
+    if (bed) {
+        preview.style.display = 'block';
+        noSelection.style.display = 'none';
+        nameDisplay.textContent = 'Bed #: ' + bed;
+        const monthVal = monthInput.value;
+        if (monthVal) {
+            const [y, m] = monthVal.split('-');
+            const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            monthDisplay.textContent = 'Month: ' + monthNames[parseInt(m)-1] + ' ' + y;
+        } else {
+            monthDisplay.textContent = 'Month: _______________';
+        }
+        renderTrackingSheet();
+    } else {
+        preview.style.display = 'none';
+        noSelection.style.display = 'block';
+    }
 }
 
 function renderTrackingSheet() {
-    const nameInput = document.getElementById('trackingPatientName');
-    const nameDisplay = document.getElementById('trackingNameDisplay');
+    const monthInput = document.getElementById('trackingMonth');
+    let daysInMonth = 31;
+    if (monthInput.value) {
+        const [y, m] = monthInput.value.split('-');
+        daysInMonth = new Date(parseInt(y), parseInt(m), 0).getDate();
+    }
 
-    nameInput.addEventListener('input', function() {
-        nameDisplay.textContent = this.value ? 'Bed #: ' + this.value : 'Bed #: _______________';
+    const container = document.getElementById('trackingTablesContainer');
+
+    // Build one table per exercise category with ALL exercises listed
+    let html = '';
+    Object.entries(exercises).forEach(([cat, data]) => {
+        html += `<div style="margin-bottom: 2rem;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: ${data.hex}; margin: 0 0 0.5rem 0;">${data.shape} ${data.title} (Card #${data.num})</h3>
+            <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem;">
+                <thead>
+                    <tr>
+                        <th style="border: 1px solid #1e293b; padding: 0.375rem 0.5rem; background: ${data.hex}20; text-align: left; min-width: 140px; position: sticky; left: 0; z-index: 1;">Exercise</th>
+                        ${Array.from({length: daysInMonth}, (_, i) =>
+                            `<th style="border: 1px solid #1e293b; padding: 0.375rem 0.25rem; background: #f1f5f9; text-align: center; min-width: 1.5rem;">${i+1}</th>`
+                        ).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${data.list.map(exercise => `<tr>
+                        <td style="border: 1px solid #1e293b; padding: 0.375rem 0.5rem; background: ${data.hex}10; font-weight: 500; position: sticky; left: 0; z-index: 1;">${exercise}</td>
+                        ${Array.from({length: daysInMonth}, () =>
+                            `<td style="border: 1px solid #1e293b; padding: 0.375rem; text-align: center; height: 1.5rem;"></td>`
+                        ).join('')}
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+            </div>
+        </div>`;
     });
 
-    const tbody = document.getElementById('trackingTableBody');
-    const days = 7;
-    const rows = Object.entries(exercises).map(([cat, data]) => {
-        const cells = Array.from({length: days}, () =>
-            `<td style="border: 2px solid #1e293b; padding: 0.75rem; text-align: center; min-width: 3rem; height: 2.5rem;"></td>`
-        ).join('');
-        return `<tr>
-            <td style="border: 2px solid #1e293b; padding: 0.75rem; background: ${data.hex}15;">
-                <span style="font-weight: 700; color: ${data.hex};">${data.shape}</span>
-                <span style="font-weight: 600; color: #1e293b; margin-left: 0.5rem;">${data.title}</span>
-                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">${data.list[selections[cat]]}</div>
-            </td>
-            ${cells}
-        </tr>`;
-    });
+    // Add Comfort Level row
+    html += `<div style="margin-bottom: 1rem;">
+        <h3 style="font-size: 1rem; font-weight: 700; color: #64748b; margin: 0 0 0.5rem 0;">Comfort Level</h3>
+        <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.75rem;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #1e293b; padding: 0.375rem 0.5rem; background: #f1f5f9; text-align: left; min-width: 140px; position: sticky; left: 0; z-index: 1;">Metric</th>
+                    ${Array.from({length: daysInMonth}, (_, i) =>
+                        `<th style="border: 1px solid #1e293b; padding: 0.375rem 0.25rem; background: #f1f5f9; text-align: center; min-width: 1.5rem;">${i+1}</th>`
+                    ).join('')}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #1e293b; padding: 0.375rem 0.5rem; background: #f8fafc; font-weight: 500; position: sticky; left: 0; z-index: 1;">Rate 1-10</td>
+                    ${Array.from({length: daysInMonth}, () =>
+                        `<td style="border: 1px solid #1e293b; padding: 0.375rem; text-align: center; height: 1.5rem; font-size: 0.625rem; color: #94a3b8;"></td>`
+                    ).join('')}
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>`;
 
-    // Add a "Pain / Comfort Level" row
-    const comfortCells = Array.from({length: days}, () =>
-        `<td style="border: 2px solid #1e293b; padding: 0.75rem; text-align: center; height: 2.5rem; font-size: 0.75rem; color: #94a3b8;">1-10</td>`
-    ).join('');
-    rows.push(`<tr>
-        <td style="border: 2px solid #1e293b; padding: 0.75rem; background: #f1f5f9;">
-            <span style="font-weight: 600; color: #1e293b;">Comfort Level</span>
-            <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">Rate 1 (hard) to 10 (easy)</div>
-        </td>
-        ${comfortCells}
-    </tr>`);
-
-    tbody.innerHTML = rows.join('');
+    container.innerHTML = html;
 }
 
 function printTrackingSheet() {
