@@ -195,15 +195,11 @@
 
                 <div id="trackingTablesContainer" style="overflow: hidden; flex: 1; font-size: 0.625rem;"></div>
 
-                <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; flex-shrink: 0;">
-                    <div style="border: 1px solid #cbd5e1; border-radius: 0.25rem; padding: 0.375rem 0.5rem; flex: 1; margin-right: 1rem;">
-                        <p style="font-weight: 600; color: #1e293b; margin: 0; font-size: 0.625rem;">Caregiver Notes</p>
+                <div style="margin-top: 0.5rem; flex-shrink: 0;">
+                    <div style="border: 1px solid #cbd5e1; border-radius: 0.25rem; padding: 0.375rem 0.5rem;">
+                        <p style="font-weight: 600; color: #1e293b; margin: 0; font-size: 0.625rem;">Notes</p>
                         <p style="color: #cbd5e1; margin: 0.25rem 0 0 0; border-bottom: 1px solid #e2e8f0; font-size: 0.5rem;">_</p>
                         <p style="color: #cbd5e1; margin: 0.25rem 0 0 0; border-bottom: 1px solid #e2e8f0; font-size: 0.5rem;">_</p>
-                    </div>
-                    <div style="text-align: right; font-size: 0.5625rem; color: #94a3b8; display: flex; flex-direction: column; justify-content: flex-end;">
-                        <span>Mark each box when exercise is completed</span>
-                        <span>Stroke Recovery Cards - Recovery in Motion</span>
                     </div>
                 </div>
             </div>
@@ -719,21 +715,25 @@ function renderTrackingSheet() {
 
     const container = document.getElementById('trackingTablesContainer');
 
-    // Find longest exercise name to set consistent column width across all tables
+    // Find longest exercise name to calculate fixed column width
     let longestName = 'Rate 1-10';
     Object.values(exercises).forEach(data => {
         data.list.forEach(ex => { if (ex.name.length > longestName.length) longestName = ex.name; });
     });
+    // Approximate width: ~0.38em per character + 0.5rem padding at current font-size
+    const exColWidth = Math.ceil(longestName.length * 0.38 + 0.5) + 'em';
 
+    const tableStyle = `width: 100%; border-collapse: collapse; font-size: inherit; table-layout: fixed;`;
     const dayCellStyle = 'border: 1px solid #94a3b8; padding: 0; background: #f1f5f9; text-align: center; font-size: 0.5em;';
     const dayEmptyStyle = 'border: 1px solid #94a3b8; padding: 0; text-align: center; height: 0.75rem;';
-    const exColStyle = 'border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; font-weight: 500; white-space: nowrap;';
+    const exColStyle = 'border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; font-weight: 500; white-space: nowrap; overflow: hidden;';
 
     let html = '';
     Object.entries(exercises).forEach(([cat, data]) => {
         html += `<div style="margin-bottom: 0.375rem;">
             <h3 style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; margin: 0 0 0.125rem 0;">${data.shape} ${data.title}</h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: inherit;">
+            <table style="${tableStyle}">
+                <colgroup><col style="width: ${exColWidth};">${Array.from({length: daysInMonth}, () => '<col>').join('')}</colgroup>
                 <thead>
                     <tr>
                         <th style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: ${data.hex}20; text-align: left; white-space: nowrap;">Exercise</th>
@@ -743,7 +743,6 @@ function renderTrackingSheet() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr style="height: 0; visibility: hidden;"><td style="padding: 0 0.25rem; white-space: nowrap; border: none;">${longestName}</td>${Array.from({length: daysInMonth}, () => '<td style="border: none;"></td>').join('')}</tr>
                     ${data.list.map(exercise => `<tr>
                         <td style="${exColStyle} background: ${data.hex}10;">${exercise.name}</td>
                         ${Array.from({length: daysInMonth}, () =>
@@ -757,7 +756,8 @@ function renderTrackingSheet() {
 
     html += `<div style="margin-bottom: 0.25rem;">
         <h3 style="font-size: 0.5625rem; font-weight: 700; color: #64748b; margin: 0 0 0.125rem 0;">Comfort Level</h3>
-        <table style="width: 100%; border-collapse: collapse; font-size: inherit;">
+        <table style="${tableStyle}">
+            <colgroup><col style="width: ${exColWidth};">${Array.from({length: daysInMonth}, () => '<col>').join('')}</colgroup>
             <thead>
                 <tr>
                     <th style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: #f1f5f9; text-align: left; white-space: nowrap;">Metric</th>
@@ -767,7 +767,6 @@ function renderTrackingSheet() {
                 </tr>
             </thead>
             <tbody>
-                <tr style="height: 0; visibility: hidden;"><td style="padding: 0 0.25rem; white-space: nowrap; border: none;">${longestName}</td>${Array.from({length: daysInMonth}, () => '<td style="border: none;"></td>').join('')}</tr>
                 <tr>
                     <td style="${exColStyle} background: #f8fafc;">Rate 1-10</td>
                     ${Array.from({length: daysInMonth}, () =>
