@@ -596,29 +596,29 @@ function generateAndPrint() {
     const printWin = window.open('', '_blank');
 
     if (format === 'quadrant') {
-        // Build 2x2 quad card page — all sizes 2x for print
+        // Build 2x2 quad card page — sized to fit 4 cards on one landscape page
         let quadCells = '';
         Object.keys(exercises).forEach(cat => {
             const data = exercises[cat];
             const ex = data.list[selections[cat]];
-            const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 36pt; color: #1e293b; margin-bottom: 0.5rem;">${i+1}. ${s}</div>`).join('');
-            quadCells += `<div style="border: 4px solid ${data.hex}; padding: 3rem; display: flex; flex-direction: column;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <span style="font-size: 5rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+            const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 2.4vh; color: #1e293b; margin-bottom: 0.3vh;">${i+1}. ${s}</div>`).join('');
+            quadCells += `<div style="border: 2px solid ${data.hex}; padding: 1.5vh 1.5vw; display: flex; flex-direction: column; overflow: hidden;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1vh;">
+                    <div style="display: flex; align-items: center; gap: 0.75vw;">
+                        <span style="font-size: 4vh; color: ${data.hex}; line-height: 1;">${data.shape}</span>
                         <div>
-                            <div style="font-size: 44pt; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
-                            <div style="font-size: 40pt; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                            <div style="font-size: 3vh; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                            <div style="font-size: 2.8vh; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                         </div>
                     </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 28pt; font-weight: 700; color: ${data.hex};">GOAL</div>
-                        <div style="width: 6rem; height: 6rem; border: 6px solid ${data.hex}; margin-top: 0.5rem;"></div>
+                    <div style="text-align: center; flex-shrink: 0;">
+                        <div style="font-size: 2vh; font-weight: 700; color: ${data.hex};">GOAL</div>
+                        <div style="width: 5vh; height: 5vh; border: 3px solid ${data.hex}; margin-top: 0.25vh;"></div>
                     </div>
                 </div>
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                     ${stepsHtml}
-                    <div style="font-size: 36pt; font-weight: 700; color: ${data.hex}; margin-top: 1rem;">REPEAT until GOAL</div>
+                    <div style="font-size: 2.4vh; font-weight: 700; color: ${data.hex}; margin-top: 0.5vh;">REPEAT until GOAL</div>
                 </div>
             </div>`;
         });
@@ -631,29 +631,29 @@ function generateAndPrint() {
                 ${quadCells}
             </div></body></html>`);
     } else {
-        // Build one page per selected large card — all sizes 2x for print
+        // Build one page per selected large card — sized to fit one landscape page
         let pages = '';
         Object.entries(exercises).forEach(([cat, data]) => {
             data.list.forEach((ex, idx) => {
                 if (!largeCardSelections[cat][idx]) return;
-                const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 48pt; color: #1e293b; margin-bottom: 1rem;">${i+1}. ${s}</div>`).join('');
-                pages += `<div style="page-break-after: always; width: 100vw; height: 100vh; box-sizing: border-box; padding: 4rem; display: flex; flex-direction: column;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4rem;">
-                        <div style="display: flex; align-items: center; gap: 1.5rem;">
-                            <span style="font-size: 8rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 5vh; color: #1e293b; margin-bottom: 1vh;">${i+1}. ${s}</div>`).join('');
+                pages += `<div style="page-break-after: always; width: 100vw; height: 100vh; box-sizing: border-box; padding: 3vh 3vw; display: flex; flex-direction: column; overflow: hidden;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3vh;">
+                        <div style="display: flex; align-items: center; gap: 1.5vw;">
+                            <span style="font-size: 10vh; color: ${data.hex}; line-height: 1;">${data.shape}</span>
                             <div>
-                                <div style="font-size: 60pt; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
-                                <div style="font-size: 56pt; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                                <div style="font-size: 7vh; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                                <div style="font-size: 6vh; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                             </div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 36pt; font-weight: 700; color: ${data.hex};">GOAL</div>
-                            <div style="width: 8rem; height: 8rem; border: 6px solid ${data.hex}; margin-top: 0.5rem;"></div>
+                        <div style="text-align: center; flex-shrink: 0;">
+                            <div style="font-size: 4vh; font-weight: 700; color: ${data.hex};">GOAL</div>
+                            <div style="width: 10vh; height: 10vh; border: 4px solid ${data.hex}; margin-top: 0.5vh;"></div>
                         </div>
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                         ${stepsHtml}
-                        <div style="font-size: 48pt; font-weight: 700; color: ${data.hex}; margin-top: 2rem;">REPEAT until GOAL</div>
+                        <div style="font-size: 5vh; font-weight: 700; color: ${data.hex}; margin-top: 2vh;">REPEAT until GOAL</div>
                     </div>
                 </div>`;
             });
