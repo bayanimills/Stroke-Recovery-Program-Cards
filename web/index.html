@@ -651,8 +651,15 @@ function renderTrackingSheet() {
 
     const container = document.getElementById('trackingTablesContainer');
 
+    // Find longest exercise name to set consistent column width across all tables
+    let longestName = 'Rate 1-10';
+    Object.values(exercises).forEach(data => {
+        data.list.forEach(ex => { if (ex.name.length > longestName.length) longestName = ex.name; });
+    });
+
     const dayCellStyle = 'border: 1px solid #94a3b8; padding: 0; background: #f1f5f9; text-align: center; width: 1.1em; max-width: 1.1em; font-size: 0.5em;';
     const dayEmptyStyle = 'border: 1px solid #94a3b8; padding: 0; text-align: center; height: 0.75rem; width: 1.1em; max-width: 1.1em;';
+    const exColStyle = 'border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; font-weight: 500; white-space: nowrap;';
 
     let html = '';
     Object.entries(exercises).forEach(([cat, data]) => {
@@ -661,15 +668,16 @@ function renderTrackingSheet() {
             <table style="width: 100%; border-collapse: collapse; font-size: inherit;">
                 <thead>
                     <tr>
-                        <th style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: ${data.hex}20; text-align: left;">Exercise</th>
+                        <th style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: ${data.hex}20; text-align: left; white-space: nowrap;">Exercise</th>
                         ${Array.from({length: daysInMonth}, (_, i) =>
                             `<th style="${dayCellStyle}">${i+1}</th>`
                         ).join('')}
                     </tr>
                 </thead>
                 <tbody>
+                    <tr style="height: 0; visibility: hidden;"><td style="padding: 0 0.25rem; white-space: nowrap; border: none;">${longestName}</td>${Array.from({length: daysInMonth}, () => '<td style="border: none;"></td>').join('')}</tr>
                     ${data.list.map(exercise => `<tr>
-                        <td style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: ${data.hex}10; font-weight: 500; white-space: nowrap;">${exercise.name}</td>
+                        <td style="${exColStyle} background: ${data.hex}10;">${exercise.name}</td>
                         ${Array.from({length: daysInMonth}, () =>
                             `<td style="${dayEmptyStyle}"></td>`
                         ).join('')}
@@ -684,15 +692,16 @@ function renderTrackingSheet() {
         <table style="width: 100%; border-collapse: collapse; font-size: inherit;">
             <thead>
                 <tr>
-                    <th style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: #f1f5f9; text-align: left;">Metric</th>
+                    <th style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: #f1f5f9; text-align: left; white-space: nowrap;">Metric</th>
                     ${Array.from({length: daysInMonth}, (_, i) =>
                         `<th style="${dayCellStyle}">${i+1}</th>`
                     ).join('')}
                 </tr>
             </thead>
             <tbody>
+                <tr style="height: 0; visibility: hidden;"><td style="padding: 0 0.25rem; white-space: nowrap; border: none;">${longestName}</td>${Array.from({length: daysInMonth}, () => '<td style="border: none;"></td>').join('')}</tr>
                 <tr>
-                    <td style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: #f8fafc; font-weight: 500;">Rate 1-10</td>
+                    <td style="${exColStyle} background: #f8fafc;">Rate 1-10</td>
                     ${Array.from({length: daysInMonth}, () =>
                         `<td style="${dayEmptyStyle}"></td>`
                     ).join('')}
