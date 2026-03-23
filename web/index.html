@@ -794,26 +794,91 @@ function printTrackingSheet() {
     printWin.print();
 }
 
+function addExercise(cat) {
+    const name = prompt('Exercise name:');
+    if (!name || !name.trim()) return;
+    const stepsStr = prompt('Steps (separate each step with a comma):');
+    if (!stepsStr) return;
+    const steps = stepsStr.split(',').map(s => s.trim()).filter(s => s);
+    if (!steps.length) return;
+    exercises[cat].list.push({ name: name.trim(), steps });
+    // Add to largeCardSelections
+    largeCardSelections[cat][exercises[cat].list.length - 1] = true;
+    renderCardOptionsCategories();
+    updateFormatPreview();
+}
+
+function deleteExercise(cat, idx) {
+    if (!confirm('Delete "' + exercises[cat].list[idx].name + '"?')) return;
+    exercises[cat].list.splice(idx, 1);
+    // Rebuild largeCardSelections for this category
+    largeCardSelections[cat] = {};
+    exercises[cat].list.forEach((_, i) => { largeCardSelections[cat][i] = true; });
+    // Reset selection if out of bounds
+    if (selections[cat] >= exercises[cat].list.length) selections[cat] = Math.max(0, exercises[cat].list.length - 1);
+    renderCardOptionsCategories();
+    updateFormatPreview();
+}
+
+function editExerciseName(cat, idx) {
+    const ex = exercises[cat].list[idx];
+    const name = prompt('Exercise name:', ex.name);
+    if (name === null || !name.trim()) return;
+    ex.name = name.trim();
+    renderCardOptionsCategories();
+}
+
+function editStep(cat, exIdx, stepIdx) {
+    const ex = exercises[cat].list[exIdx];
+    const val = prompt('Edit step:', ex.steps[stepIdx]);
+    if (val === null || !val.trim()) return;
+    ex.steps[stepIdx] = val.trim();
+    renderCardOptionsCategories();
+}
+
+function addStep(cat, exIdx) {
+    const val = prompt('New step:');
+    if (!val || !val.trim()) return;
+    exercises[cat].list[exIdx].steps.push(val.trim());
+    renderCardOptionsCategories();
+}
+
+function deleteStep(cat, exIdx, stepIdx) {
+    const ex = exercises[cat].list[exIdx];
+    if (ex.steps.length <= 1) { alert('Exercise must have at least one step.'); return; }
+    ex.steps.splice(stepIdx, 1);
+    renderCardOptionsCategories();
+}
+
 function renderCardOptionsCategories() {
     const container = document.getElementById('cardOptionsCategoriesContainer');
     container.innerHTML = Object.entries(exercises).map(([cat, data]) => `
         <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 4px solid ${data.hex};">
             <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
                 <span style="font-size: 2rem;">${data.shape}</span>
-                <div>
+                <div style="flex: 1;">
                     <strong style="color: #1e293b; font-size: 1.125rem; display: block;">${data.title}</strong>
-                    <span style="font-size: 0.75rem; color: ${data.hex};">Card #${data.num} &middot; ${data.list.length} exercises</span>
+                    <span style="font-size: 0.75rem; color: ${data.hex};">Card #${data.num} &middot; ${data.list.length} exercise${data.list.length !== 1 ? 's' : ''}</span>
                 </div>
+                <button onclick="addExercise('${cat}')" style="padding: 0.5rem 1rem; background: ${data.hex}; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.875rem;">+ Add Exercise</button>
             </div>
             ${data.list.map((ex, idx) => `
                 <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; margin-bottom: 0.75rem; background: #f8fafc;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                        <strong style="color: #1e293b; font-size: 0.9375rem;">${ex.name}</strong>
-                        <span style="font-size: 0.6875rem; color: #94a3b8; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">${ex.steps.length} steps</span>
+                        <strong style="color: #1e293b; font-size: 0.9375rem; cursor: pointer;" onclick="editExerciseName('${cat}', ${idx})" title="Click to rename">${ex.name}</strong>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <span style="font-size: 0.6875rem; color: #94a3b8; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">${ex.steps.length} steps</span>
+                            <button onclick="editExerciseName('${cat}', ${idx})" style="padding: 0.25rem 0.5rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #475569;" title="Rename">Rename</button>
+                            <button onclick="deleteExercise('${cat}', ${idx})" style="padding: 0.25rem 0.5rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #dc2626;" title="Delete exercise">Delete</button>
+                        </div>
                     </div>
                     <ol style="margin: 0; padding-left: 1.25rem; color: #475569; font-size: 0.875rem;">
-                        ${ex.steps.map(step => `<li style="margin-bottom: 0.25rem; padding: 0.125rem 0;">${step}</li>`).join('')}
+                        ${ex.steps.map((step, si) => `<li style="margin-bottom: 0.25rem; padding: 0.125rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="flex: 1; cursor: pointer;" onclick="editStep('${cat}', ${idx}, ${si})" title="Click to edit">${step}</span>
+                            <button onclick="deleteStep('${cat}', ${idx}, ${si})" style="padding: 0.125rem 0.375rem; background: none; border: 1px solid #e2e8f0; border-radius: 0.25rem; cursor: pointer; font-size: 0.6875rem; color: #94a3b8;" title="Remove step">x</button>
+                        </li>`).join('')}
                     </ol>
+                    <button onclick="addStep('${cat}', ${idx})" style="margin-top: 0.5rem; padding: 0.25rem 0.75rem; background: white; border: 1px dashed #cbd5e1; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #64748b;">+ Add Step</button>
                     <div style="margin-top: 0.5rem; font-size: 0.8125rem; font-weight: 600; color: #1e293b;">REPEAT until GOAL</div>
                 </div>
             `).join('')}
