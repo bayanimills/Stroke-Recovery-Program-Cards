@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRP Cards — Stroke Recovery Program</title>
+</head>
+<body style="margin: 0; padding: 0;">
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%); min-height: 100vh; padding: 0; margin: 0;">
 
 <!-- Navigation -->
@@ -206,14 +214,11 @@
     <div style="max-width: 900px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
             <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Card Options</h1>
-            <p style="color: #64748b; margin: 0;">Configure exercise cards, categories, and card content</p>
+            <p style="color: #64748b; margin: 0;">View and edit exercise cards, steps, and settings</p>
         </div>
 
-        <!-- Exercise Categories -->
-        <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-            <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0 0 1.5rem 0;">Exercise Categories</h2>
-            <div id="cardOptionsCategoriesGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"></div>
-        </div>
+        <!-- Exercise Cards CRUD -->
+        <div id="cardOptionsCategoriesContainer"></div>
 
         <!-- Card Settings -->
         <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
@@ -387,10 +392,26 @@
 
 <script>
 const exercises = {
-    hand: { hex: '#0072B2', shape: '★', num: 1, title: 'Hand Exercises', list: ['Stress Ball Squeeze', 'Finger Pinches', 'Water Bottle Squeeze'] },
-    shoulder: { hex: '#E69F00', shape: '●', num: 2, title: 'Shoulder Exercises', list: ['Gentle Arm Lift', 'Clasped Hands', 'Shoulder Circles'] },
-    arm: { hex: '#009E73', shape: '■', num: 3, title: 'Arm Exercises', list: ['Nose Touch', 'Elbow Bend', 'Water Bottle Hold'] },
-    leg: { hex: '#CC79A7', shape: '▲', num: 4, title: 'Leg Exercises', list: ['Knee to Chest Lift', 'Seated Leg Raise', 'Leg Up with Toes'] }
+    hand: { hex: '#0072B2', shape: '★', num: 1, title: 'Hand Exercises', list: [
+        { name: 'Stress Ball Squeeze', steps: ['Hold ball in right hand', 'Squeeze firmly (count to 3)', 'Slowly Release'] },
+        { name: 'Finger Pinches', steps: ['Touch thumb to each finger', 'Pinch and hold (count to 2)', 'Release and move to next finger'] },
+        { name: 'Water Bottle Squeeze', steps: ['Hold empty bottle in hand', 'Squeeze to crush bottle', 'Slowly release grip'] }
+    ]},
+    shoulder: { hex: '#E69F00', shape: '●', num: 2, title: 'Shoulder Exercises', list: [
+        { name: 'Gentle Arm Lift', steps: ['Rest arms at sides', 'Slowly raise arm forward', 'Hold for 5 seconds', 'Slowly lower arm'] },
+        { name: 'Clasped Hands', steps: ['Clasp hands together', 'Slowly Raise to ceiling', 'Hold in place for 10 seconds', 'Slowly Lower Arms'] },
+        { name: 'Shoulder Circles', steps: ['Sit upright', 'Roll shoulders forward slowly', 'Roll shoulders backward slowly'] }
+    ]},
+    arm: { hex: '#009E73', shape: '■', num: 3, title: 'Arm Exercises', list: [
+        { name: 'Nose Touch', steps: ['Extend arm fully', 'Slowly touch nose with finger', 'Extend arm back out', 'Repeat with other arm'] },
+        { name: 'Elbow Bend', steps: ['Rest arm on table', 'Slowly bend elbow to shoulder', 'Hold for 3 seconds', 'Slowly straighten arm'] },
+        { name: 'Water Bottle Hold', steps: ['Hold 300ml bottle', 'Elevate to 30°', 'Hold in place for 10', 'Slowly Lower'] }
+    ]},
+    leg: { hex: '#CC79A7', shape: '▲', num: 4, title: 'Leg Exercises', list: [
+        { name: 'Knee to Chest Lift', steps: ['Lift knee as high as you can', 'Hold for 2 seconds', 'Slowly Lower Leg'] },
+        { name: 'Seated Leg Raise', steps: ['Sit with feet flat', 'Straighten one leg out', 'Hold for 5 seconds', 'Slowly lower foot'] },
+        { name: 'Leg Up with Toes', steps: ['Raise leg straight out', 'Point toes up and hold', 'Point toes down and hold', 'Lower leg slowly'] }
+    ]}
 };
 
 const selections = { hand: 0, shoulder: 0, arm: 0, leg: 0 };
@@ -438,7 +459,7 @@ function renderQuadExerciseSelection() {
                 </div>
             </div>
             <select id="${cat}Select" onchange="updateSelection('${cat}', this.value); updateFormatPreview();" style="width: 100%; padding: 0.625rem; border: 2px solid ${data.hex}; border-radius: 0.5rem; background: white; color: #1e293b; font-weight: 500; font-size: 0.875rem;">
-                ${data.list.map((ex, idx) => `<option value="${idx}" ${selections[cat] === idx ? 'selected' : ''}>${ex}</option>`).join('')}
+                ${data.list.map((ex, idx) => `<option value="${idx}" ${selections[cat] === idx ? 'selected' : ''}>${ex.name}</option>`).join('')}
             </select>
         </div>
     `).join('');
@@ -457,7 +478,7 @@ function renderLargeCardCheckboxes() {
                 ${data.list.map((ex, idx) => `
                     <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.5rem 0.75rem; border-radius: 0.375rem; background: white; border: 1px solid ${data.hex}40; transition: all 0.15s;">
                         <input type="checkbox" ${largeCardSelections[cat][idx] ? 'checked' : ''} onchange="toggleLargeCard('${cat}', ${idx}, this.checked);" style="width: 1.25rem; height: 1.25rem; accent-color: ${data.hex}; cursor: pointer;" />
-                        <span style="font-weight: 500; color: #1e293b; font-size: 0.9375rem;">${ex}</span>
+                        <span style="font-weight: 500; color: #1e293b; font-size: 0.9375rem;">${ex.name}</span>
                     </label>
                 `).join('')}
             </div>
@@ -509,33 +530,59 @@ function updateFormatPreview() {
     const format = document.querySelector('input[name="outputFormat"]:checked').value;
 
     if (format === 'quadrant') {
-        // PDF-like portrait page with 2x2 quadrant
-        container.style.cssText = 'background: white; width: 280px; aspect-ratio: 210 / 297; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.12); display: flex; flex-direction: column;';
-        let header = `<div style="text-align: center; margin-bottom: 0.75rem;">
-            <strong style="font-size: 0.75rem; color: #1e293b;">Stroke Recovery Program</strong>
-            <p style="font-size: 0.5rem; color: #64748b; margin: 0;">Exercise Card Set</p>
-        </div>`;
-        let quadGrid = `<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; flex: 1;">`;
+        // PDF-like portrait page with 2x2 quadrant matching actual card layout
+        container.style.cssText = 'background: white; width: 420px; aspect-ratio: 297 / 210; padding: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.12); display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr);';
+        let quadCells = '';
         Object.keys(exercises).forEach(cat => {
             const data = exercises[cat];
-            quadGrid += `<div style="background: ${data.hex}10; border: 2px solid ${data.hex}; border-radius: 0.375rem; padding: 0.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <div style="font-size: 1.25rem; margin-bottom: 0.25rem;">${data.shape}</div>
-                <strong style="color: #1e293b; display: block; font-size: 0.625rem;">${data.title}</strong>
-                <span style="color: ${data.hex}; font-weight: 600; font-size: 0.5625rem; margin-top: 0.125rem;">${data.list[selections[cat]]}</span>
+            const ex = data.list[selections[cat]];
+            const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 0.4375rem; color: #1e293b; margin-bottom: 0.0625rem;">${i+1}. ${s}</div>`).join('');
+            quadCells += `<div style="border: 1px solid #1e293b; padding: 0.375rem; display: flex; flex-direction: column;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
+                    <div style="display: flex; align-items: center; gap: 0.25rem;">
+                        <span style="font-size: 0.75rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                        <div>
+                            <div style="font-size: 0.4375rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                            <div style="font-size: 0.375rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 0.375rem; font-weight: 700; color: #1e293b;">GOAL</div>
+                        <div style="width: 1rem; height: 1rem; border: 1.5px solid #1e293b; margin-top: 0.0625rem;"></div>
+                    </div>
+                </div>
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                    ${stepsHtml}
+                    <div style="font-size: 0.4375rem; font-weight: 700; color: #1e293b; margin-top: 0.125rem;">REPEAT until GOAL</div>
+                </div>
             </div>`;
         });
-        quadGrid += '</div>';
-        container.innerHTML = header + quadGrid;
+        container.innerHTML = quadCells;
     } else {
-        // PDF-like portrait pages for each selected card
+        // PDF-like portrait pages for each selected large card
         let cards = [];
         Object.entries(exercises).forEach(([cat, data]) => {
             data.list.forEach((ex, idx) => {
                 if (largeCardSelections[cat][idx]) {
-                    cards.push(`<div style="background: white; width: 140px; aspect-ratio: 210 / 297; padding: 0.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; flex-shrink: 0;">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">${data.shape}</div>
-                        <strong style="color: #1e293b; display: block; font-size: 0.625rem;">${data.title}</strong>
-                        <span style="color: ${data.hex}; font-weight: 700; font-size: 0.75rem; margin-top: 0.25rem;">${ex}</span>
+                    const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 0.5625rem; color: #1e293b; margin-bottom: 0.125rem;">${i+1}. ${s}</div>`).join('');
+                    cards.push(`<div style="background: white; width: 180px; aspect-ratio: 210 / 297; padding: 0.625rem; box-shadow: 0 2px 8px rgba(0,0,0,0.12); display: flex; flex-direction: column; flex-shrink: 0; border: 1px solid #e2e8f0;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                            <div style="display: flex; align-items: center; gap: 0.25rem;">
+                                <span style="font-size: 1.25rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                                <div>
+                                    <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                                    <div style="font-size: 0.5rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="font-size: 0.5rem; font-weight: 700; color: #1e293b;">GOAL</div>
+                                <div style="width: 1.25rem; height: 1.25rem; border: 2px solid #1e293b; margin-top: 0.0625rem;"></div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
+                            ${stepsHtml}
+                            <div style="font-size: 0.5625rem; font-weight: 700; color: #1e293b; margin-top: 0.1875rem;">REPEAT until GOAL</div>
+                        </div>
                     </div>`);
                 }
             });
@@ -618,7 +665,7 @@ function renderTrackingSheet() {
                 </thead>
                 <tbody>
                     ${data.list.map(exercise => `<tr>
-                        <td style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: ${data.hex}10; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${exercise}</td>
+                        <td style="border: 1px solid #94a3b8; padding: 0.125rem 0.25rem; background: ${data.hex}10; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${exercise.name}</td>
                         ${Array.from({length: daysInMonth}, () =>
                             `<td style="border: 1px solid #94a3b8; padding: 0.0625rem; text-align: center; height: 0.875rem;"></td>`
                         ).join('')}
@@ -669,22 +716,30 @@ function printTrackingSheet() {
 }
 
 function renderCardOptionsCategories() {
-    const grid = document.getElementById('cardOptionsCategoriesGrid');
-    grid.innerHTML = Object.entries(exercises).map(([cat, data]) => `
-        <div style="border: 2px solid ${data.hex}; border-radius: 0.75rem; padding: 1.25rem; background: linear-gradient(135deg, ${data.hex}10 0%, ${data.hex}05 100%);">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                <span style="font-size: 1.75rem;">${data.shape}</span>
+    const container = document.getElementById('cardOptionsCategoriesContainer');
+    container.innerHTML = Object.entries(exercises).map(([cat, data]) => `
+        <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border-left: 4px solid ${data.hex};">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+                <span style="font-size: 2rem;">${data.shape}</span>
                 <div>
-                    <strong style="color: #1e293b; display: block;">${data.title}</strong>
+                    <strong style="color: #1e293b; font-size: 1.125rem; display: block;">${data.title}</strong>
                     <span style="font-size: 0.75rem; color: ${data.hex};">Card #${data.num} &middot; ${data.list.length} exercises</span>
                 </div>
             </div>
-            <ul style="margin: 0; padding-left: 1.25rem; color: #475569; font-size: 0.875rem;">
-                ${data.list.map(ex => `<li style="margin-bottom: 0.25rem;">${ex}</li>`).join('')}
-            </ul>
+            ${data.list.map((ex, idx) => `
+                <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; margin-bottom: 0.75rem; background: #f8fafc;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                        <strong style="color: #1e293b; font-size: 0.9375rem;">${ex.name}</strong>
+                        <span style="font-size: 0.6875rem; color: #94a3b8; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">${ex.steps.length} steps</span>
+                    </div>
+                    <ol style="margin: 0; padding-left: 1.25rem; color: #475569; font-size: 0.875rem;">
+                        ${ex.steps.map(step => `<li style="margin-bottom: 0.25rem; padding: 0.125rem 0;">${step}</li>`).join('')}
+                    </ol>
+                    <div style="margin-top: 0.5rem; font-size: 0.8125rem; font-weight: 600; color: #1e293b;">REPEAT until GOAL</div>
+                </div>
+            `).join('')}
         </div>
     `).join('');
-    // Update summary
     const totalEx = Object.values(exercises).reduce((sum, d) => sum + d.list.length, 0);
     document.getElementById('cardOptionsSummary').textContent = `${Object.keys(exercises).length} categories, ${totalEx} exercises total`;
 }
@@ -693,3 +748,5 @@ showPage('dashboard');
 </script>
 
 </div>
+</body>
+</html>
