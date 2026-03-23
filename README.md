@@ -24,7 +24,7 @@ After stroke, recovery depends on consistent exercise. But accessing rehabilitat
 
 ### Browser (No Installation)
 
-1. Open `web/caregiver-app.html` in any browser
+1. Open `web/index.html` in any browser
 2. Create a personalized exercise program in 5 minutes
 3. Print, laminate, track progress
 
@@ -82,7 +82,7 @@ srp-cards/
 │   └── exercise-sheet       # Python CLI tool
 │
 ├── web/
-│   ├── caregiver-app.html   # Caregiver interface (primary)
+│   ├── index.html   # Caregiver interface (primary)
 │   ├── system.html          # Admin documentation
 │   └── index.html           # Developer tool
 │
@@ -111,14 +111,14 @@ pip install -r requirements.txt
 chmod +x cli/exercise-sheet
 
 # Open caregiver interface
-open web/caregiver-app.html
+open web/index.html
 ```
 
 ## Usage
 
 ### Browser Interface
 
-1. Open `web/caregiver-app.html`
+1. Open `web/index.html`
 2. Enter patient name and ability level
 3. Select one exercise per category
 4. Choose output format (4-on-1 or large cards)

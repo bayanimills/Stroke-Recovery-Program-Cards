@@ -32,7 +32,7 @@ git branch -M main
 mkdir -p cli web docs examples
 
 mv exercise-sheet cli/
-mv caregiver-app.html web/
+mv index.html web/
 mv system.html web/
 mv index.html web/
 
@@ -49,7 +49,7 @@ git add .
 git commit -m "Initial commit: Stroke Recovery Program Cards
 
 - CLI tool for PDF generation (exercise-sheet)
-- Caregiver web interface (caregiver-app.html)
+- Caregiver web interface (index.html)
 - Admin documentation (system.html)
 - Developer tool (index.html)
 - Setup guides and documentation"
@@ -72,7 +72,7 @@ Your repo is now live at: **github.com/USERNAME/SRP-Cards---Stroke-Recovery-Prog
 ```bash
 # Go to Settings > Pages > Source: main branch
 # Your app will be live at:
-# https://USERNAME.github.io/SRP-Cards---Stroke-Recovery-Program-Cards/web/caregiver-app.html
+# https://USERNAME.github.io/SRP-Cards---Stroke-Recovery-Program-Cards/web/index.html
 ```
 
 ### Sync Changes

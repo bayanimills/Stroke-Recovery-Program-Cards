@@ -40,7 +40,7 @@ jobs:
 
       - name: Check HTML files exist and are well-formed
         run: |
-          for f in index.html web/caregiver-app.html web/index.html web/system.html; do
+          for f in index.html web/index.html web/system.html; do
             if [ ! -f "$f" ]; then
               echo "ERROR: Missing $f"
               exit 1

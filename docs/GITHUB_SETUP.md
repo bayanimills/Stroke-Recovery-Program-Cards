@@ -36,7 +36,7 @@ srp-cards/
 ├── cli/
 │   └── exercise-sheet
 ├── web/
-│   ├── caregiver-app.html
+│   ├── index.html
 │   ├── system.html
 │   └── index.html
 ├── docs/
@@ -48,7 +48,7 @@ srp-cards/
 ### 4. Copy Files
 ```bash
 cp exercise-sheet cli/
-cp caregiver-app.html web/
+cp index.html web/
 cp system.html web/
 cp index.html web/
 chmod +x cli/exercise-sheet
@@ -83,7 +83,7 @@ gh repo create SRP-Cards---Stroke-Recovery-Program-Cards --public --source=. --r
 # Settings > Pages > Source: main branch /root
 
 # Your caregiver interface will be live at:
-# https://username.github.io/SRP-Cards---Stroke-Recovery-Program-Cards/web/caregiver-app.html
+# https://username.github.io/SRP-Cards---Stroke-Recovery-Program-Cards/web/index.html
 ```
 
 ---
