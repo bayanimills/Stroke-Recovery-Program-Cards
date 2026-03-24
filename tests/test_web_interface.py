@@ -1,9 +1,9 @@
 """Playwright tests for the SRP Cards web interface."""
 
-import re
 from pathlib import Path
 
 import pytest
+from axe_playwright_python.sync_playwright import Axe
 from playwright.sync_api import Page, expect
 
 
@@ -248,3 +248,61 @@ class TestMobileResponsive:
         page.click("#mobileMenuBtn")
         page.click("#helpBtn")
         expect(page.locator("#navLinks")).to_be_hidden()
+
+
+class TestAccessibility:
+    """WCAG accessibility tests using axe-core engine."""
+
+    def _run_axe(self, page: Page):
+        axe = Axe()
+        results = axe.run(page)
+        violations = results.response.get("violations", [])
+        return violations
+
+    def _format_violations(self, violations):
+        lines = []
+        for v in violations:
+            nodes = len(v.get("nodes", []))
+            lines.append(f"[{v['impact']}] {v['id']}: {v['description']} ({nodes} instance(s))")
+        return "\n".join(lines)
+
+    def test_dashboard_accessibility(self, page: Page):
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Dashboard a11y violations:\n{self._format_violations(critical)}"
+
+    def test_onboarding_accessibility(self, page: Page):
+        page.click("#onboardingBtn")
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Onboarding a11y violations:\n{self._format_violations(critical)}"
+
+    def test_print_cards_accessibility(self, page: Page):
+        page.click("#createBtn")
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Print Cards a11y violations:\n{self._format_violations(critical)}"
+
+    def test_tracking_sheet_accessibility(self, page: Page):
+        page.click("#trackingBtn")
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Tracking Sheet a11y violations:\n{self._format_violations(critical)}"
+
+    def test_card_options_accessibility(self, page: Page):
+        page.click("#cardOptionsBtn")
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Card Options a11y violations:\n{self._format_violations(critical)}"
+
+    def test_help_page_accessibility(self, page: Page):
+        page.click("#helpBtn")
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Help page a11y violations:\n{self._format_violations(critical)}"
+
+    def test_offboarding_accessibility(self, page: Page):
+        page.click("#offboardingBtn")
+        violations = self._run_axe(page)
+        critical = [v for v in violations if v["impact"] in ("critical", "serious")]
+        assert len(critical) == 0, f"Offboarding a11y violations:\n{self._format_violations(critical)}"

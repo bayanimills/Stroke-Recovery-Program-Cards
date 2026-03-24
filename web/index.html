@@ -83,28 +83,28 @@
                     <input type="radio" name="careSetting" value="acute" style="margin-top: 0.2rem;" onchange="onCareSettingChange()" />
                     <div>
                         <div style="font-weight: 600; color: #1e293b; font-size: 0.9375rem;">Acute Stroke Unit</div>
-                        <div style="font-size: 0.75rem; color: #94a3b8;">Days 1-7. Flag only — cards not deployed.</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">Days 1-7. Flag only — cards not deployed.</div>
                     </div>
                 </label>
                 <label style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; cursor: pointer;">
                     <input type="radio" name="careSetting" value="rehab" checked style="margin-top: 0.2rem;" onchange="onCareSettingChange()" />
                     <div>
                         <div style="font-weight: 600; color: #1e293b; font-size: 0.9375rem;">Inpatient Rehabilitation</div>
-                        <div style="font-size: 0.75rem; color: #94a3b8;">Primary target. Full Tier 0 extraction available.</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">Primary target. Full Tier 0 extraction available.</div>
                     </div>
                 </label>
                 <label style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; cursor: pointer;">
                     <input type="radio" name="careSetting" value="resi" style="margin-top: 0.2rem;" onchange="onCareSettingChange()" />
                     <div>
                         <div style="font-weight: 600; color: #1e293b; font-size: 0.9375rem;">Residential Aged Care</div>
-                        <div style="font-size: 0.75rem; color: #94a3b8;">Partial Tier 0. Tier 1 gate load-bearing.</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">Partial Tier 0. Tier 1 gate load-bearing.</div>
                     </div>
                 </label>
                 <label style="display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem 1rem; border: 2px solid #e2e8f0; border-radius: 0.5rem; cursor: pointer;">
                     <input type="radio" name="careSetting" value="community" style="margin-top: 0.2rem;" onchange="onCareSettingChange()" />
                     <div>
                         <div style="font-weight: 600; color: #1e293b; font-size: 0.9375rem;">Community / Home-Based</div>
-                        <div style="font-size: 0.75rem; color: #94a3b8;">Formal scores often absent. Fallback pathway active.</div>
+                        <div style="font-size: 0.75rem; color: #64748b;">Formal scores often absent. Fallback pathway active.</div>
                     </div>
                 </label>
             </div>
@@ -119,7 +119,7 @@
         <!-- Tier 0: Passive Record Extraction -->
         <div id="tier0Section" style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                <div style="width: 2rem; height: 2rem; background: #6366f1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem;">T0</div>
+                <div style="width: 2rem; height: 2rem; background: #4f46e5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem;">T0</div>
                 <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Tier 0 — Passive Record Extraction</h2>
             </div>
             <p style="color: #64748b; margin: 0 0 1.5rem 0; font-size: 0.8125rem;">No participant contact. Enter scores from existing clinical records. Select "Not available" if a score is not in the record.</p>
@@ -127,61 +127,61 @@
             <div class="mob-stack" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem;">
                 <!-- GCS -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">GCS <span style="color: #94a3b8; font-weight: 400;">(3-15)</span></label>
-                    <select id="gateGCS" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gateGCS" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">GCS <span style="color: #64748b; font-weight: 400;">(3-15)</span></label>
+                    <select id="gateGCS" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="">Not available</option>
                         <option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option>
                     </select>
                 </div>
                 <!-- mRS -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">mRS <span style="color: #94a3b8; font-weight: 400;">(0-6)</span></label>
-                    <select id="gatemRS" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gatemRS" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">mRS <span style="color: #64748b; font-weight: 400;">(0-6)</span></label>
+                    <select id="gatemRS" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="">Not available</option>
                         <option value="0">0 — No symptoms</option><option value="1">1 — No significant disability</option><option value="2">2 — Slight disability</option><option value="3">3 — Moderate disability</option><option value="4">4 — Moderately severe</option><option value="5">5 — Severe disability</option><option value="6">6 — Dead</option>
                     </select>
                 </div>
                 <!-- NIHSS Item 9 -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">NIHSS Item 9 <span style="color: #94a3b8; font-weight: 400;">Language</span></label>
-                    <select id="gateNIHSS9" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gateNIHSS9" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">NIHSS Item 9 <span style="color: #64748b; font-weight: 400;">Language</span></label>
+                    <select id="gateNIHSS9" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="">Not available</option>
                         <option value="0">0 — Normal</option><option value="1">1 — Mild-moderate aphasia</option><option value="2">2 — Severe aphasia</option><option value="3">3 — Mute / global aphasia</option>
                     </select>
                 </div>
                 <!-- NIHSS Item 10 -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">NIHSS Item 10 <span style="color: #94a3b8; font-weight: 400;">Dysarthria</span></label>
-                    <select id="gateNIHSS10" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gateNIHSS10" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">NIHSS Item 10 <span style="color: #64748b; font-weight: 400;">Dysarthria</span></label>
+                    <select id="gateNIHSS10" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="">Not available</option>
                         <option value="0">0 — Normal</option><option value="1">1 — Mild-moderate</option><option value="2">2 — Severe</option>
                     </select>
                 </div>
                 <!-- NIHSS Item 11 -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">NIHSS Item 11 <span style="color: #94a3b8; font-weight: 400;">Neglect</span></label>
-                    <select id="gateNIHSS11" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gateNIHSS11" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">NIHSS Item 11 <span style="color: #64748b; font-weight: 400;">Neglect</span></label>
+                    <select id="gateNIHSS11" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="">Not available</option>
                         <option value="0">0 — Normal</option><option value="1">1 — Partial neglect</option><option value="2">2 — Profound neglect</option>
                     </select>
                 </div>
                 <!-- Barthel -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Barthel Total <span style="color: #94a3b8; font-weight: 400;">(0-100)</span></label>
-                    <select id="gateBarthel" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gateBarthel" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Barthel Total <span style="color: #64748b; font-weight: 400;">(0-100)</span></label>
+                    <select id="gateBarthel" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="">Not available</option>
                     </select>
                     <script>(function(){ const s=document.getElementById('gateBarthel'); for(let i=0;i<=100;i+=5){ const o=document.createElement('option'); o.value=i; o.textContent=i; s.appendChild(o); } })();</script>
                 </div>
                 <!-- FIM Cognitive -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">FIM Cognitive <span style="color: #94a3b8; font-weight: 400;">(5-35)</span></label>
+                    <label for="gateFIMCog" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">FIM Cognitive <span style="color: #64748b; font-weight: 400;">(5-35)</span></label>
                     <input type="number" id="gateFIMCog" min="5" max="35" placeholder="Not available" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; box-sizing: border-box;" onchange="runTier0()" />
                 </div>
                 <!-- SP Report -->
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">SP Report Present</label>
-                    <select id="gateSPReport" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier0()">
+                    <label for="gateSPReport" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">SP Report Present</label>
+                    <select id="gateSPReport" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier0()">
                         <option value="unknown">Unknown</option>
                         <option value="yes">Yes</option>
                         <option value="yes-receptive">Yes — receptive aphasia noted</option>
@@ -199,26 +199,26 @@
         </div>
 
         <!-- Tier 1: Rapid Bedside Gate -->
-        <div id="tier1Section" style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); opacity: 0.5; pointer-events: none;">
+        <div id="tier1Section" style="background: #f1f5f9; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); pointer-events: none;" aria-disabled="true">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                <div style="width: 2rem; height: 2rem; background: #f59e0b; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem;">T1</div>
+                <div style="width: 2rem; height: 2rem; background: #7c2d12; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem;">T1</div>
                 <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Tier 1 — Rapid Bedside Gate</h2>
-                <span style="font-size: 0.75rem; color: #94a3b8; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">~3-5 min</span>
+                <span style="font-size: 0.75rem; color: #1e293b; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">~3-5 min</span>
             </div>
             <p style="color: #64748b; margin: 0 0 1.5rem 0; font-size: 0.8125rem;">FAST (Frenchay Aphasia Screening Test) — proceed / defer decision point.</p>
 
             <div class="mob-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">FAST Comprehension</label>
-                    <select id="gateFASTComp" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier1()">
+                    <label for="gateFASTComp" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">FAST Comprehension</label>
+                    <select id="gateFASTComp" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier1()">
                         <option value="">Not administered</option>
                         <option value="pass">Pass</option>
                         <option value="fail">Fail</option>
                     </select>
                 </div>
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">FAST Expression</label>
-                    <select id="gateFASTExpr" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier1()">
+                    <label for="gateFASTExpr" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">FAST Expression</label>
+                    <select id="gateFASTExpr" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier1()">
                         <option value="">Not administered</option>
                         <option value="pass">Pass</option>
                         <option value="fail">Fail</option>
@@ -273,18 +273,18 @@
         </div>
 
         <!-- Tier 2: Suitability Calibration -->
-        <div id="tier2Section" style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); opacity: 0.5; pointer-events: none;">
+        <div id="tier2Section" style="background: #f1f5f9; border-radius: 0.75rem; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); pointer-events: none;" aria-disabled="true">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
-                <div style="width: 2rem; height: 2rem; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem;">T2</div>
+                <div style="width: 2rem; height: 2rem; background: #047857; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem;">T2</div>
                 <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Tier 2 — Suitability Calibration</h2>
-                <span style="font-size: 0.75rem; color: #94a3b8; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">~10-15 min if MoCA needed</span>
+                <span style="font-size: 0.75rem; color: #1e293b; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">~10-15 min if MoCA needed</span>
             </div>
             <p style="color: #64748b; margin: 0 0 1.5rem 0; font-size: 0.8125rem;">Determines card set complexity, format adaptations, and session parameters.</p>
 
             <div class="mob-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">MoCA Total Score <span style="color: #94a3b8; font-weight: 400;">(0-30)</span></label>
-                    <select id="gateMoCA" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;" onchange="runTier2()">
+                    <label for="gateMoCA" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">MoCA Total Score <span style="color: #64748b; font-weight: 400;">(0-30)</span></label>
+                    <select id="gateMoCA" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white; color: #1e293b;" onchange="runTier2()">
                         <option value="">Not available</option>
                     </select>
                     <script>(function(){ const s=document.getElementById('gateMoCA'); for(let i=0;i<=30;i++){ const o=document.createElement('option'); o.value=i; o.textContent=i+(i>=26?' — No significant impairment':i>=18?' — Mild-moderate':i>=13?' — Moderate impairment':' — Significant impairment'); s.appendChild(o); } })();</script>
@@ -315,7 +315,7 @@
 
         <!-- Regulatory note -->
         <div style="margin-top: 1.5rem; padding: 0.75rem 1rem; background: #f8fafc; border-radius: 0.375rem;">
-            <p style="color: #94a3b8; margin: 0; font-size: 0.75rem; font-style: italic;">This tool does not administer any clinical assessment. It accepts externally-obtained scores only. Output states are routing signals, not diagnoses or clinical determinations. It does not replace clinician judgement.</p>
+            <p style="color: #64748b; margin: 0; font-size: 0.75rem; font-style: italic;">This tool does not administer any clinical assessment. It accepts externally-obtained scores only. Output states are routing signals, not diagnoses or clinical determinations. It does not replace clinician judgement.</p>
         </div>
     </div>
 </div>
@@ -363,7 +363,7 @@
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 1rem 0;">Bed <span id="bedNumberDisplay"></span></h3>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <button onclick="showPage('create')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Create Card Set</button>
-                    <button onclick="showPage('tracking')" style="padding: 0.75rem 1.5rem; background: white; color: #10b981; border: 2px solid #10b981; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">View Tracking Sheet</button>
+                    <button onclick="showPage('tracking')" style="padding: 0.75rem 1.5rem; background: white; color: #047857; border: 2px solid #10b981; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">View Tracking Sheet</button>
                 </div>
             </div>
             <div id="bedNumberEmpty" style="text-align: center; padding: 2rem; border: 2px dashed #cbd5e1; border-radius: 0.5rem; margin-top: 1.5rem;">
@@ -371,7 +371,7 @@
                 <h3 style="font-size: 1.125rem; font-weight: 600; color: #1e293b; margin: 0 0 0.5rem 0;">No bed selected</h3>
                 <p style="color: #64748b; margin: 0;">Select a bed number above to get started</p>
             </div>
-            <p style="color: #94a3b8; margin: 1.5rem 0 0 0; font-size: 0.8125rem; font-style: italic; text-align: center; max-width: 32rem; margin-left: auto; margin-right: auto;">A recovery tracking system can be built in — including mobile-based goal-setting, progress dashboards, and caregiver notifications to support each patient's journey.</p>
+            <p style="color: #64748b; margin: 1.5rem 0 0 0; font-size: 0.8125rem; font-style: italic; text-align: center; max-width: 32rem; margin-left: auto; margin-right: auto;">A recovery tracking system can be built in — including mobile-based goal-setting, progress dashboards, and caregiver notifications to support each patient's journey.</p>
         </div>
     </div>
 </div>
@@ -387,7 +387,7 @@
         <!-- Step 1: Format Selection (Large Cards first, default) -->
         <div style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                <div style="width: 2rem; height: 2rem; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">1</div>
+                <div style="width: 2rem; height: 2rem; background: #047857; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">1</div>
                 <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;">Choose Format</h2>
             </div>
             <div class="mob-stack" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;" id="formatCards">
@@ -413,7 +413,7 @@
         <!-- Step 2: Exercise Selection (conditional on format) -->
         <div id="exerciseSelectionSection" style="background: white; border-radius: 0.75rem; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
-                <div style="width: 2rem; height: 2rem; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">2</div>
+                <div style="width: 2rem; height: 2rem; background: #047857; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">2</div>
                 <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0;" id="exerciseStepTitle">Select Exercises</h2>
             </div>
             <p style="color: #64748b; margin-bottom: 1.5rem;" id="exerciseStepDesc">Choose one exercise from each category</p>
@@ -456,14 +456,14 @@
         <div style="background: white; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
             <div style="display: flex; gap: 1.5rem; align-items: end; flex-wrap: wrap;">
                 <div>
-                    <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Bed Number</label>
+                    <label for="trackingPatientName" style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Bed Number</label>
                     <select id="trackingPatientName" onchange="updateTrackingBedDisplay();" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; background: white; min-width: 200px;">
                         <option value="">-- Optional --</option>
                     </select>
                     <script>(function(){const s=document.getElementById('trackingPatientName');for(let i=1;i<=30;i++){const o=document.createElement('option');o.value='B'+i;o.textContent='B'+i;s.appendChild(o);}})();</script>
                 </div>
                 <div>
-                    <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Month / Year</label>
+                    <label for="trackingMonth" style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Month / Year</label>
                     <input type="month" id="trackingMonth" onchange="updateTrackingBedDisplay();" style="padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem;" />
                 </div>
             </div>
@@ -515,7 +515,7 @@
             <h2 style="font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0 0 1.5rem 0;">Card Settings</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
                 <div>
-                    <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Card Frequency</label>
+                    <label for="cardOptionsFrequency" style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Card Frequency</label>
                     <select id="cardOptionsFrequency" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; background: white;">
                         <option value="15">Every 15 minutes</option>
                         <option value="30" selected>Every 30 minutes</option>
@@ -523,7 +523,7 @@
                     </select>
                 </div>
                 <div>
-                    <label style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Repetitions per Exercise</label>
+                    <label for="cardOptionsReps" style="display: block; font-size: 0.875rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Repetitions per Exercise</label>
                     <select id="cardOptionsReps" style="width: 100%; padding: 0.75rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 1rem; background: white;">
                         <option value="5">5 repetitions</option>
                         <option value="10" selected>10 repetitions</option>
@@ -541,7 +541,7 @@
         <!-- Card Summary -->
         <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem 1.5rem; border-radius: 0.375rem; margin-bottom: 2rem;">
             <h4 style="color: #1e293b; font-weight: 600; margin: 0 0 0.5rem 0;">Summary</h4>
-            <p style="color: #64748b; margin: 0; font-size: 0.875rem;" id="cardOptionsSummary">4 categories, 12 exercises total</p>
+            <p style="color: #475569; margin: 0; font-size: 0.875rem;" id="cardOptionsSummary">4 categories, 12 exercises total</p>
         </div>
 
         <!-- Export / Reset -->
@@ -662,26 +662,26 @@
             <div>
                 <strong style="color: #1e293b; font-size: 0.9375rem;">Reference Material</strong>
                 <ul style="color: #64748b; margin: 0.5rem 0 0 0; padding-left: 1.5rem; font-size: 0.875rem;">
-                    <li>Wong, B. (2011). "Points of view: Color blindness." <em>Nature Methods</em>, 8(6), 441. — <a href="https://www.nature.com/articles/nmeth.1618" target="_blank" rel="noopener" style="color: #3b82f6;">nature.com/articles/nmeth.1618</a></li>
-                    <li>Web Content Accessibility Guidelines (WCAG) 2.1 — Contrast ratio minimum 4.5:1 for normal text. — <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener" style="color: #3b82f6;">w3.org/TR/WCAG21</a></li>
-                    <li>Stroke Foundation guidelines on patient-facing print materials. — <a href="https://strokefoundation.org.au/" target="_blank" rel="noopener" style="color: #3b82f6;">strokefoundation.org.au</a></li>
+                    <li>Wong, B. (2011). "Points of view: Color blindness." <em>Nature Methods</em>, 8(6), 441. — <a href="https://www.nature.com/articles/nmeth.1618" target="_blank" rel="noopener" style="color: #1d4ed8;">nature.com/articles/nmeth.1618</a></li>
+                    <li>Web Content Accessibility Guidelines (WCAG) 2.1 — Contrast ratio minimum 4.5:1 for normal text. — <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener" style="color: #1d4ed8;">w3.org/TR/WCAG21</a></li>
+                    <li>Stroke Foundation guidelines on patient-facing print materials. — <a href="https://strokefoundation.org.au/" target="_blank" rel="noopener" style="color: #1d4ed8;">strokefoundation.org.au</a></li>
                 </ul>
             </div>
 
             <div style="margin-top: 1.25rem;">
                 <strong style="color: #1e293b; font-size: 0.9375rem;">Colour Blindness Resources</strong>
                 <ul style="color: #64748b; margin: 0.5rem 0 0 0; padding-left: 1.5rem; font-size: 0.875rem;">
-                    <li><a href="https://davidmathlogic.com/colorblind/" target="_blank" rel="noopener" style="color: #3b82f6;">Coloring for Colorblindness</a> — Interactive palette builder with CVD simulation</li>
-                    <li><a href="https://colorbrewer2.org/" target="_blank" rel="noopener" style="color: #3b82f6;">ColorBrewer 2.0</a> — Colorblind-safe colour schemes for maps and data</li>
-                    <li><a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank" rel="noopener" style="color: #3b82f6;">Coblis</a> — Upload images to simulate colour vision deficiency types</li>
-                    <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener" style="color: #3b82f6;">WebAIM Contrast Checker</a> — Verify WCAG contrast ratios for text and backgrounds</li>
+                    <li><a href="https://davidmathlogic.com/colorblind/" target="_blank" rel="noopener" style="color: #1d4ed8;">Coloring for Colorblindness</a> — Interactive palette builder with CVD simulation</li>
+                    <li><a href="https://colorbrewer2.org/" target="_blank" rel="noopener" style="color: #1d4ed8;">ColorBrewer 2.0</a> — Colorblind-safe colour schemes for maps and data</li>
+                    <li><a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank" rel="noopener" style="color: #1d4ed8;">Coblis</a> — Upload images to simulate colour vision deficiency types</li>
+                    <li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener" style="color: #1d4ed8;">WebAIM Contrast Checker</a> — Verify WCAG contrast ratios for text and backgrounds</li>
                 </ul>
             </div>
         </div>
 
         <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 0.375rem;">
             <h4 style="color: #1e293b; font-weight: 600; margin: 0 0 0.5rem 0;">💡 Pro Tips</h4>
-            <ul style="color: #64748b; margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
+            <ul style="color: #475569; margin: 0; padding-left: 1.5rem; font-size: 0.875rem;">
                 <li>Laminate printed sheets for durability</li>
                 <li>Use whiteboard markers on laminated sheets to check off daily completions</li>
                 <li>Print in color for best readability</li>
@@ -712,27 +712,27 @@
                 <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: #fef2f2; border-radius: 0.375rem; border-left: 3px solid #dc2626;">
                     <span style="font-weight: 700; color: #dc2626; min-width: 1.25rem;">1</span>
                     <span style="font-weight: 600; color: #1e293b;">RE-GATE</span>
-                    <span style="color: #64748b; flex: 1;">— Regression detected. Overrides all other states.</span>
+                    <span style="color: #475569; flex: 1;">— Regression detected. Overrides all other states.</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: #fffbeb; border-radius: 0.375rem; border-left: 3px solid #f59e0b;">
-                    <span style="font-weight: 700; color: #f59e0b; min-width: 1.25rem;">2</span>
+                    <span style="font-weight: 700; color: #b45309; min-width: 1.25rem;">2</span>
                     <span style="font-weight: 600; color: #1e293b;">SESSION GAP</span>
-                    <span style="color: #64748b; flex: 1;">— 14+ days inactivity. Holds program open.</span>
+                    <span style="color: #475569; flex: 1;">— 14+ days inactivity. Holds program open.</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: #f8fafc; border-radius: 0.375rem; border-left: 3px solid #6366f1;">
-                    <span style="font-weight: 700; color: #6366f1; min-width: 1.25rem;">3</span>
+                    <span style="font-weight: 700; color: #4338ca; min-width: 1.25rem;">3</span>
                     <span style="font-weight: 600; color: #1e293b;">PLATEAU</span>
-                    <span style="color: #64748b; flex: 1;">— Progress stalled on 50%+ cards over 3+ sessions.</span>
+                    <span style="color: #475569; flex: 1;">— Progress stalled on 50%+ cards over 3+ sessions.</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: #eff6ff; border-radius: 0.375rem; border-left: 3px solid #2563eb;">
                     <span style="font-weight: 700; color: #2563eb; min-width: 1.25rem;">4</span>
                     <span style="font-weight: 600; color: #1e293b;">UPGRADE</span>
-                    <span style="color: #64748b; flex: 1;">— Exceeding goals consistently. Transition to next level.</span>
+                    <span style="color: #475569; flex: 1;">— Exceeding goals consistently. Transition to next level.</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0.75rem; background: #f0fdf4; border-radius: 0.375rem; border-left: 3px solid #10b981;">
-                    <span style="font-weight: 700; color: #10b981; min-width: 1.25rem;">5</span>
+                    <span style="font-weight: 700; color: #047857; min-width: 1.25rem;">5</span>
                     <span style="font-weight: 600; color: #1e293b;">COMPLETE</span>
-                    <span style="color: #64748b; flex: 1;">— All goals recalibrated, sustained performance ratio.</span>
+                    <span style="color: #475569; flex: 1;">— All goals recalibrated, sustained performance ratio.</span>
                 </div>
             </div>
         </div>
@@ -744,7 +744,7 @@
 
             <div class="mob-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem;">
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Current Card Set Level</label>
+                    <label for="offCardSetLevel" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Current Card Set Level</label>
                     <select id="offCardSetLevel" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;">
                         <option value="full">Full card set</option>
                         <option value="simplified">Simplified card set</option>
@@ -752,15 +752,15 @@
                     </select>
                 </div>
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Days Since Last Session</label>
+                    <label for="offDaysSinceSession" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Days Since Last Session</label>
                     <input type="number" id="offDaysSinceSession" min="0" max="365" value="1" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; box-sizing: border-box;" onchange="runOffboardEval()" />
                 </div>
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Consecutive Sessions at Current Level</label>
+                    <label for="offConsecutiveSessions" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Consecutive Sessions at Current Level</label>
                     <input type="number" id="offConsecutiveSessions" min="1" max="999" value="1" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; box-sizing: border-box;" onchange="runOffboardEval()" />
                 </div>
                 <div>
-                    <label style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Last MoCA Score Date</label>
+                    <label for="offMoCAAge" style="display: block; font-size: 0.8125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.375rem;">Last MoCA Score Date</label>
                     <select id="offMoCAAge" style="width: 100%; padding: 0.625rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9375rem; background: white;">
                         <option value="current">Within 3 months</option>
                         <option value="overdue">Over 3 months ago</option>
@@ -773,9 +773,9 @@
             <h3 style="font-size: 0.9375rem; font-weight: 700; color: #1e293b; margin: 0 0 0.75rem 0;">Card Performance (last 3 sessions)</h3>
             <p style="color: #64748b; margin: 0 0 0.5rem 0; font-size: 0.75rem;">For each active card: enter the performance ratio (actual reps &divide; goal reps) for the last 3 sessions. Check "Recalibrated" if the goal was adjusted upward after being met.</p>
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; font-size: 0.6875rem; color: #64748b;">
-                <span><strong style="color: #10b981;">&#8805; 1.0</strong> = exceeding goal</span>
+                <span><strong style="color: #047857;">&#8805; 1.0</strong> = exceeding goal</span>
                 <span><strong style="color: #2563eb;">0.9 - 1.0</strong> = on track</span>
-                <span><strong style="color: #f59e0b;">&lt; 0.9 flat</strong> = plateau signal</span>
+                <span><strong style="color: #b45309;">&lt; 0.9 flat</strong> = plateau signal</span>
                 <span><strong style="color: #dc2626;">&gt; 30% drop</strong> = regression flag</span>
             </div>
 
@@ -827,7 +827,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="border: 1px solid #e2e8f0; padding: 0.5rem; font-weight: 600; color: #10b981;">COMPLETE</td>
+                        <td style="border: 1px solid #e2e8f0; padding: 0.5rem; font-weight: 600; color: #047857;">COMPLETE</td>
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Yes</td>
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Via UPGRADE or fresh onboard</td>
                     </tr>
@@ -837,7 +837,7 @@
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Continuous (Tier 2 re-gate)</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid #e2e8f0; padding: 0.5rem; font-weight: 600; color: #6366f1;">PLATEAU</td>
+                        <td style="border: 1px solid #e2e8f0; padding: 0.5rem; font-weight: 600; color: #4338ca;">PLATEAU</td>
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Suspended pending review</td>
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Conditional on facilitator action</td>
                     </tr>
@@ -852,7 +852,7 @@
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Within 30 days without full re-onboard; otherwise Tier 0</td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid #e2e8f0; padding: 0.5rem; font-weight: 600; color: #f59e0b;">SESSION GAP</td>
+                        <td style="border: 1px solid #e2e8f0; padding: 0.5rem; font-weight: 600; color: #b45309;">SESSION GAP</td>
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">No — held open</td>
                         <td style="border: 1px solid #e2e8f0; padding: 0.5rem;">Resolves to one of the above</td>
                     </tr>
@@ -862,29 +862,29 @@
 
         <!-- Regulatory note -->
         <div style="padding: 0.75rem 1rem; background: #f8fafc; border-radius: 0.375rem;">
-            <p style="color: #94a3b8; margin: 0; font-size: 0.75rem; font-style: italic;">This tool does not administer any clinical assessment. Output states are routing signals, not diagnoses or clinical determinations. DEFER and EXCLUDE outputs suggest next steps without implying clinical authority. It does not replace clinician judgement.</p>
+            <p style="color: #64748b; margin: 0; font-size: 0.75rem; font-style: italic;">This tool does not administer any clinical assessment. Output states are routing signals, not diagnoses or clinical determinations. DEFER and EXCLUDE outputs suggest next steps without implying clinical authority. It does not replace clinician judgement.</p>
         </div>
     </div>
 </div>
 
 <script>
 const defaultExercises = {
-    hand: { hex: '#0072B2', shape: '★', num: 1, title: 'Hand Exercises', list: [
+    hand: { hex: '#0072B2', textHex: '#005a8c', shape: '★', num: 1, title: 'Hand Exercises', list: [
         { name: 'Stress Ball Squeeze', steps: ['Hold ball in right hand', 'Squeeze firmly for 5 seconds', 'Slowly Release'] },
         { name: 'Finger Pinches', steps: ['Touch thumb to each finger', 'Pinch and hold for 5 seconds', 'Release and move to next finger'] },
         { name: 'Water Bottle Squeeze', steps: ['Hold empty bottle in hand', 'Squeeze bottle for 5 seconds', 'Slowly release grip'] }
     ]},
-    shoulder: { hex: '#E69F00', shape: '●', num: 2, title: 'Shoulder Exercises', list: [
+    shoulder: { hex: '#E69F00', textHex: '#a16b00', shape: '●', num: 2, title: 'Shoulder Exercises', list: [
         { name: 'Gentle Arm Lift', steps: ['Rest arms at sides', 'Slowly raise arm forward', 'Hold for 5 seconds', 'Slowly lower arm'] },
         { name: 'Clasped Hands', steps: ['Clasp hands together', 'Slowly Raise to ceiling', 'Hold in place for 5 seconds', 'Slowly Lower Arms'] },
         { name: 'Shoulder Circles', steps: ['Sit upright', 'Roll shoulders forward slowly', 'Roll shoulders backward slowly'] }
     ]},
-    arm: { hex: '#009E73', shape: '■', num: 3, title: 'Arm Exercises', list: [
+    arm: { hex: '#009E73', textHex: '#007555', shape: '■', num: 3, title: 'Arm Exercises', list: [
         { name: 'Nose Touch', steps: ['Extend arm fully', 'Slowly touch nose with finger', 'Extend arm back out', 'Repeat with other arm'] },
         { name: 'Elbow Bend', steps: ['Rest arm on table', 'Slowly bend elbow to shoulder', 'Hold for 5 seconds', 'Slowly straighten arm'] },
         { name: 'Water Bottle Hold', steps: ['Hold 300ml bottle', 'Elevate to 30°', 'Hold in place for 5', 'Slowly Lower'] }
     ]},
-    leg: { hex: '#CC79A7', shape: '▲', num: 4, title: 'Leg Exercises', list: [
+    leg: { hex: '#CC79A7', textHex: '#9b4d7a', shape: '▲', num: 4, title: 'Leg Exercises', list: [
         { name: 'Knee to Chest Lift', steps: ['Lift knee as high as you can', 'Hold for 5 seconds', 'Slowly Lower Leg'] },
         { name: 'Seated Leg Raise', steps: ['Sit with feet flat', 'Straighten one leg out', 'Hold for 5 seconds', 'Slowly lower foot'] },
         { name: 'Leg Up with Toes', steps: ['Raise leg straight out', 'Point toes up and hold', 'Point toes down and hold', 'Lower leg slowly'] }
@@ -960,7 +960,7 @@ function renderQuadExerciseSelection() {
                 <span style="font-size: 1.75rem;">${data.shape}</span>
                 <div>
                     <strong style="color: #1e293b; display: block; font-size: 0.9375rem;">${data.title}</strong>
-                    <span style="font-size: 0.75rem; color: ${data.hex};">Card #${data.num}</span>
+                    <span style="font-size: 0.75rem; color: ${data.textHex || data.hex};">Card #${data.num}</span>
                 </div>
             </div>
             <select id="${cat}Select" onchange="updateSelection('${cat}', this.value); updateFormatPreview();" style="width: 100%; padding: 0.625rem; border: 2px solid ${data.hex}; border-radius: 0.5rem; background: white; color: #1e293b; font-weight: 500; font-size: 0.875rem;">
@@ -977,12 +977,12 @@ function renderLargeCardCheckboxes() {
             <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
                 <span style="font-size: 1.5rem;">${data.shape}</span>
                 <strong style="color: #1e293b;">${data.title}</strong>
-                <span style="font-size: 0.75rem; color: ${data.hex};">Card #${data.num}</span>
+                <span style="font-size: 0.75rem; color: ${data.textHex || data.hex};">Card #${data.num}</span>
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                 ${data.list.map((ex, idx) => `
                     <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; padding: 0.5rem 0.75rem; border-radius: 0.375rem; background: white; border: 1px solid ${data.hex}40; transition: all 0.15s;">
-                        <input type="checkbox" ${largeCardSelections[cat][idx] ? 'checked' : ''} onchange="toggleLargeCard('${cat}', ${idx}, this.checked);" style="width: 1.25rem; height: 1.25rem; accent-color: ${data.hex}; cursor: pointer;" />
+                        <input type="checkbox" ${largeCardSelections[cat][idx] ? 'checked' : ''} onchange="toggleLargeCard('${cat}', ${idx}, this.checked);" style="width: 1.25rem; height: 1.25rem; accent-color: ${data.textHex || data.hex}; cursor: pointer;" />
                         <span style="font-weight: 500; color: #1e293b; font-size: 0.9375rem;">${ex.name}</span>
                     </label>
                 `).join('')}
@@ -1045,20 +1045,20 @@ function updateFormatPreview() {
             quadCells += `<div style="border: 1px solid ${data.hex}; padding: 0.375rem; display: flex; flex-direction: column;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem;">
                     <div style="display: flex; align-items: center; gap: 0.25rem;">
-                        <span style="font-size: 0.75rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                        <span style="font-size: 0.75rem; color: ${data.textHex || data.hex}; line-height: 1;">${data.shape}</span>
                         <div>
-                            <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                            <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.textHex || data.hex}; text-transform: uppercase;">${data.title}</div>
                             <div style="font-size: 0.5rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                         </div>
                     </div>
                     <div style="text-align: center;">
-                        <div style="font-size: 0.375rem; font-weight: 700; color: ${data.hex};">GOAL</div>
+                        <div style="font-size: 0.375rem; font-weight: 700; color: ${data.textHex || data.hex};">GOAL</div>
                         <div style="width: 1rem; height: 1rem; border: 1.5px solid ${data.hex}; margin-top: 0.0625rem;"></div>
                     </div>
                 </div>
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                     ${stepsHtml}
-                    <div style="font-size: 0.4375rem; font-weight: 700; color: ${data.hex}; margin-top: 0.125rem;">REPEAT until GOAL</div>
+                    <div style="font-size: 0.4375rem; font-weight: 700; color: ${data.textHex || data.hex}; margin-top: 0.125rem;">REPEAT until GOAL</div>
                 </div>
             </div>`;
         });
@@ -1073,27 +1073,27 @@ function updateFormatPreview() {
                     cards.push(`<div style="background: white; width: 220px; aspect-ratio: 297 / 210; padding: 0.625rem; box-shadow: 0 2px 8px rgba(0,0,0,0.12); display: flex; flex-direction: column; flex-shrink: 0; border: 1px solid #e2e8f0;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
                             <div style="display: flex; align-items: center; gap: 0.25rem;">
-                                <span style="font-size: 1.25rem; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                                <span style="font-size: 1.25rem; color: ${data.textHex || data.hex}; line-height: 1;">${data.shape}</span>
                                 <div>
-                                    <div style="font-size: 0.75rem; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                                    <div style="font-size: 0.75rem; font-weight: 700; color: ${data.textHex || data.hex}; text-transform: uppercase;">${data.title}</div>
                                     <div style="font-size: 0.6875rem; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                                 </div>
                             </div>
                             <div style="text-align: center;">
-                                <div style="font-size: 0.5rem; font-weight: 700; color: ${data.hex};">GOAL</div>
+                                <div style="font-size: 0.5rem; font-weight: 700; color: ${data.textHex || data.hex};">GOAL</div>
                                 <div style="width: 1.25rem; height: 1.25rem; border: 2px solid ${data.hex}; margin-top: 0.0625rem;"></div>
                             </div>
                         </div>
                         <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                             ${stepsHtml}
-                            <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.hex}; margin-top: 0.1875rem;">REPEAT until GOAL</div>
+                            <div style="font-size: 0.5625rem; font-weight: 700; color: ${data.textHex || data.hex}; margin-top: 0.1875rem;">REPEAT until GOAL</div>
                         </div>
                     </div>`);
                 }
             });
         });
         container.style.cssText = 'display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center;';
-        container.innerHTML = cards.length ? cards.join('') : '<p style="color: #94a3b8; text-align: center; width: 100%;">No cards selected</p>';
+        container.innerHTML = cards.length ? cards.join('') : '<p style="color: #64748b; text-align: center; width: 100%;">No cards selected</p>';
     }
 }
 
@@ -1112,20 +1112,20 @@ function generateAndPrint() {
             quadCells += `<div style="border: 2px solid ${data.hex}; padding: 1.5vh 1.5vw; display: flex; flex-direction: column; overflow: hidden;">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1vh;">
                     <div style="display: flex; align-items: center; gap: 0.75vw;">
-                        <span style="font-size: 4vh; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                        <span style="font-size: 4vh; color: ${data.textHex || data.hex}; line-height: 1;">${data.shape}</span>
                         <div>
-                            <div style="font-size: 3vh; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                            <div style="font-size: 3vh; font-weight: 700; color: ${data.textHex || data.hex}; text-transform: uppercase;">${data.title}</div>
                             <div style="font-size: 2.8vh; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                         </div>
                     </div>
                     <div style="text-align: center; flex-shrink: 0;">
-                        <div style="font-size: 2vh; font-weight: 700; color: ${data.hex};">GOAL</div>
+                        <div style="font-size: 2vh; font-weight: 700; color: ${data.textHex || data.hex};">GOAL</div>
                         <div style="width: 5vh; height: 5vh; border: 3px solid ${data.hex}; margin-top: 0.25vh;"></div>
                     </div>
                 </div>
                 <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                     ${stepsHtml}
-                    <div style="font-size: 2.4vh; font-weight: 700; color: ${data.hex}; margin-top: 0.5vh;">REPEAT until GOAL</div>
+                    <div style="font-size: 2.4vh; font-weight: 700; color: ${data.textHex || data.hex}; margin-top: 0.5vh;">REPEAT until GOAL</div>
                 </div>
             </div>`;
         });
@@ -1147,20 +1147,20 @@ function generateAndPrint() {
                 pages += `<div style="page-break-after: always; width: 100vw; height: 100vh; box-sizing: border-box; padding: 3vh 3vw; display: flex; flex-direction: column; overflow: hidden;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3vh;">
                         <div style="display: flex; align-items: center; gap: 1.5vw;">
-                            <span style="font-size: 10vh; color: ${data.hex}; line-height: 1;">${data.shape}</span>
+                            <span style="font-size: 10vh; color: ${data.textHex || data.hex}; line-height: 1;">${data.shape}</span>
                             <div>
-                                <div style="font-size: 7vh; font-weight: 700; color: ${data.hex}; text-transform: uppercase;">${data.title}</div>
+                                <div style="font-size: 7vh; font-weight: 700; color: ${data.textHex || data.hex}; text-transform: uppercase;">${data.title}</div>
                                 <div style="font-size: 6vh; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                             </div>
                         </div>
                         <div style="text-align: center; flex-shrink: 0;">
-                            <div style="font-size: 4vh; font-weight: 700; color: ${data.hex};">GOAL</div>
+                            <div style="font-size: 4vh; font-weight: 700; color: ${data.textHex || data.hex};">GOAL</div>
                             <div style="width: 10vh; height: 10vh; border: 4px solid ${data.hex}; margin-top: 0.5vh;"></div>
                         </div>
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                         ${stepsHtml}
-                        <div style="font-size: 5vh; font-weight: 700; color: ${data.hex}; margin-top: 2vh;">REPEAT until GOAL</div>
+                        <div style="font-size: 5vh; font-weight: 700; color: ${data.textHex || data.hex}; margin-top: 2vh;">REPEAT until GOAL</div>
                     </div>
                 </div>`;
             });
@@ -1238,7 +1238,7 @@ function renderTrackingSheet() {
                 <colgroup><col style="width: ${exColWidth};">${Array.from({length: daysInMonth}, () => '<col>').join('')}</colgroup>
                 <thead>
                     <tr>
-                        <th style="border: 1px solid #94a3b8; padding: ${cellPad}; background: ${data.hex}20; text-align: left; color: ${data.hex}; font-weight: 700; font-size: 0.55em; line-height: 1.2; overflow: hidden; text-overflow: ellipsis;">${data.shape} ${data.title}</th>
+                        <th style="border: 1px solid #94a3b8; padding: ${cellPad}; background: ${data.hex}20; text-align: left; color: #1e293b; font-weight: 700; font-size: 0.55em; line-height: 1.2; overflow: hidden; text-overflow: ellipsis;">${data.shape} ${data.title}</th>
                         ${Array.from({length: daysInMonth}, (_, i) =>
                             `<th style="${dayCellStyle}">${i+1}</th>`
                         ).join('')}
@@ -1261,7 +1261,7 @@ function renderTrackingSheet() {
             <colgroup><col style="width: ${exColWidth};">${Array.from({length: daysInMonth}, () => '<col>').join('')}</colgroup>
             <thead>
                 <tr>
-                    <th style="border: 1px solid #94a3b8; padding: ${cellPad}; background: #f1f5f9; text-align: left; color: #64748b; font-weight: 700; font-size: 0.55em; line-height: 1.2; overflow: hidden; text-overflow: ellipsis;">Comfort Level</th>
+                    <th style="border: 1px solid #94a3b8; padding: ${cellPad}; background: #f1f5f9; text-align: left; color: #1e293b; font-weight: 700; font-size: 0.55em; line-height: 1.2; overflow: hidden; text-overflow: ellipsis;">Comfort Level</th>
                     ${Array.from({length: daysInMonth}, (_, i) =>
                         `<th style="${dayCellStyle}">${i+1}</th>`
                     ).join('')}
@@ -1363,25 +1363,25 @@ function renderCardOptionsCategories() {
                 <span style="font-size: 2rem;">${data.shape}</span>
                 <div style="flex: 1;">
                     <strong style="color: #1e293b; font-size: 1.125rem; display: block;">${data.title}</strong>
-                    <span style="font-size: 0.75rem; color: ${data.hex};">Card #${data.num} &middot; ${data.list.length} exercise${data.list.length !== 1 ? 's' : ''}</span>
+                    <span style="font-size: 0.75rem; color: ${data.textHex || data.hex};">Card #${data.num} &middot; ${data.list.length} exercise${data.list.length !== 1 ? 's' : ''}</span>
                 </div>
-                <button onclick="addExercise('${cat}')" style="padding: 0.5rem 1rem; background: ${data.hex}; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.875rem;">+ Add Exercise</button>
+                <button onclick="addExercise('${cat}')" style="padding: 0.5rem 1rem; background: ${data.textHex || data.hex}; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.875rem;">+ Add Exercise</button>
             </div>
             ${data.list.map((ex, idx) => `
                 <div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; margin-bottom: 0.75rem; background: #f8fafc;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
                         <strong style="color: #1e293b; font-size: 0.9375rem; cursor: pointer;" onclick="editExerciseName('${cat}', ${idx})" title="Click to rename">${ex.name}</strong>
                         <div style="display: flex; gap: 0.5rem; align-items: center;">
-                            <span style="font-size: 0.6875rem; color: #94a3b8; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">${ex.steps.length} steps</span>
+                            <span style="font-size: 0.6875rem; color: #1e293b; background: #f1f5f9; padding: 0.125rem 0.5rem; border-radius: 0.25rem;">${ex.steps.length} steps</span>
                             <button onclick="editExerciseName('${cat}', ${idx})" style="padding: 0.25rem 0.5rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #475569;" title="Rename">Rename</button>
-                            <button onclick="deleteExercise('${cat}', ${idx})" style="padding: 0.25rem 0.5rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #dc2626;" title="Delete exercise">Delete</button>
+                            <button onclick="deleteExercise('${cat}', ${idx})" style="padding: 0.25rem 0.5rem; background: #fef2f2; border: 1px solid #fecaca; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #b91c1c;" title="Delete exercise">Delete</button>
                         </div>
                     </div>
                     <ol style="margin: 0; padding-left: 1.25rem; color: #475569; font-size: 0.875rem;" id="stepList_${cat}_${idx}">
                         ${ex.steps.map((step, si) => `<li draggable="true" data-cat="${cat}" data-ex="${idx}" data-step="${si}" style="margin-bottom: 0.25rem; padding: 0.375rem 0.25rem; display: flex; align-items: center; gap: 0.5rem; border-radius: 0.25rem; transition: background 0.15s; cursor: grab;" ondragstart="onStepDragStart(event)" ondragover="onStepDragOver(event)" ondrop="onStepDrop(event)" ondragend="onStepDragEnd(event)">
-                            <span style="color: #94a3b8; font-size: 0.75rem; cursor: grab;" title="Drag to reorder">⠿</span>
+                            <span style="color: #64748b; font-size: 0.75rem; cursor: grab;" title="Drag to reorder">⠿</span>
                             <span style="flex: 1; cursor: pointer;" onclick="editStep('${cat}', ${idx}, ${si})" title="Click to edit">${step}</span>
-                            <button onclick="deleteStep('${cat}', ${idx}, ${si})" style="padding: 0.125rem 0.375rem; background: none; border: 1px solid #e2e8f0; border-radius: 0.25rem; cursor: pointer; font-size: 0.6875rem; color: #94a3b8;" title="Remove step">x</button>
+                            <button onclick="deleteStep('${cat}', ${idx}, ${si})" style="padding: 0.125rem 0.375rem; background: none; border: 1px solid #e2e8f0; border-radius: 0.25rem; cursor: pointer; font-size: 0.6875rem; color: #64748b;" title="Remove step">x</button>
                         </li>`).join('')}
                     </ol>
                     <button onclick="addStep('${cat}', ${idx})" style="margin-top: 0.5rem; padding: 0.25rem 0.75rem; background: white; border: 1px dashed #cbd5e1; border-radius: 0.375rem; cursor: pointer; font-size: 0.75rem; color: #64748b;">+ Add Step</button>
@@ -1454,14 +1454,14 @@ function onCareSettingChange() {
     const tier2 = document.getElementById('tier2Section');
     if (setting === 'acute') {
         acuteNotice.style.display = 'block';
-        tier0.style.opacity = '0.5'; tier0.style.pointerEvents = 'none';
+        tier0.style.background = '#f1f5f9'; tier0.style.pointerEvents = 'none';
         tier1.style.opacity = '0.5'; tier1.style.pointerEvents = 'none';
         tier2.style.opacity = '0.5'; tier2.style.pointerEvents = 'none';
         showGateOutput('exclude', 'Acute Stroke Unit — Flag Only',
             'Recovery cards are not deployed during the acute phase. This setting has been recorded. Onboarding should occur once the participant transfers to rehabilitation or a post-acute setting.', [], []);
     } else {
         acuteNotice.style.display = 'none';
-        tier0.style.opacity = '1'; tier0.style.pointerEvents = 'auto';
+        tier0.style.background = 'white'; tier0.style.pointerEvents = 'auto';
         runTier0();
     }
 }
@@ -1509,11 +1509,11 @@ function runTier0() {
     // Determine completeness
     const hasData = gcs !== null || mrs !== null || nihss9 !== null;
     if (hasData && gateFlags.length > 0) {
-        resultEl.innerHTML = '<span style="color: #f59e0b;">PROCEED with flags</span> → Tier 1';
+        resultEl.innerHTML = '<span style="color: #b45309;">PROCEED with flags</span> → Tier 1';
     } else if (hasData) {
-        resultEl.innerHTML = '<span style="color: #10b981;">PROCEED clean</span> → Tier 1';
+        resultEl.innerHTML = '<span style="color: #047857;">PROCEED clean</span> → Tier 1';
     } else {
-        resultEl.innerHTML = '<span style="color: #6366f1;">INSUFFICIENT DATA</span> → Tier 1 as primary gate';
+        resultEl.innerHTML = '<span style="color: #4338ca;">INSUFFICIENT DATA</span> → Tier 1 as primary gate';
     }
     flagsEl.innerHTML = gateFlags.map(f => '<div style="margin-top: 0.25rem; color: #b45309;">&#9888; ' + f + '</div>').join('');
 
@@ -1558,7 +1558,7 @@ function runTier1() {
             flags.push('Expressive aphasia — response mode adapted to pointing/gesture');
             gateFlags.push('Expressive aphasia — response mode adapted to pointing/gesture');
         }
-        resultEl.innerHTML = '<span style="color: #10b981;">PROCEED</span> → Tier 2' + (flags.length ? ' (with flag)' : '');
+        resultEl.innerHTML = '<span style="color: #047857;">PROCEED</span> → Tier 2' + (flags.length ? ' (with flag)' : '');
         flagsEl.innerHTML = flags.map(f => '<div style="color: #b45309;">&#9888; ' + f + '</div>').join('');
         unlockTier(2);
         document.getElementById('tier2Result').textContent = 'Awaiting MoCA input...';
@@ -1616,7 +1616,7 @@ function runProxy() {
     if (answers[4] === 'no') proxyFlags.push('Translation requirement');
     proxyFlags.forEach(f => gateFlags.push(f));
 
-    resultEl.innerHTML = '<span style="color: #f59e0b;">PROCEED via proxy</span> → Tier 2 (reduced confidence)';
+    resultEl.innerHTML = '<span style="color: #b45309;">PROCEED via proxy</span> → Tier 2 (reduced confidence)';
     flagsEl.innerHTML = proxyFlags.map(f => '<div style="color: #b45309;">&#9888; ' + f + '</div>').join('');
 
     unlockTier(2);
@@ -1641,7 +1641,7 @@ function runTier2() {
             cardSet = 'simplified';
             adaptations.push('Proxy-routed — formal MoCA recommended at next clinical contact');
         } else {
-            resultEl.innerHTML = '<span style="color: #6366f1;">Enter MoCA score or leave as "Not available" for proxy routing</span>';
+            resultEl.innerHTML = '<span style="color: #4338ca;">Enter MoCA score or leave as "Not available" for proxy routing</span>';
             flagsEl.textContent = '';
             // Show proxy result if we got here via proxy
             cardSet = 'simplified';
@@ -1677,7 +1677,7 @@ function runTier2() {
     }
 
     const labels = { full: 'Full card set — standard format', simplified: 'Simplified card set', adapted: 'Adapted card set' };
-    resultEl.innerHTML = '<span style="color: #10b981;">' + labels[cardSet] + '</span>';
+    resultEl.innerHTML = '<span style="color: #047857;">' + labels[cardSet] + '</span>';
     flagsEl.innerHTML = adaptations.map(a => '<div style="margin-top: 0.25rem; color: #475569;">&#8227; ' + a + '</div>').join('');
 
     // Final output
@@ -1693,11 +1693,13 @@ function runTier2() {
 
 function lockTier(n) {
     const el = document.getElementById('tier' + n + 'Section');
-    el.style.opacity = '0.5'; el.style.pointerEvents = 'none';
+    el.style.background = '#f1f5f9'; el.style.pointerEvents = 'none';
+    el.setAttribute('aria-disabled', 'true');
 }
 function unlockTier(n) {
     const el = document.getElementById('tier' + n + 'Section');
-    el.style.opacity = '1'; el.style.pointerEvents = 'auto';
+    el.style.background = 'white'; el.style.pointerEvents = 'auto';
+    el.removeAttribute('aria-disabled');
 }
 
 function showGateOutput(state, title, message, adaptations, actions) {
@@ -1766,7 +1768,7 @@ function resetOnboardingGate() {
 
     // Reset care setting to rehab
     document.querySelector('input[name="careSetting"][value="rehab"]').checked = true;
-    document.getElementById('tier0Section').style.opacity = '1';
+    document.getElementById('tier0Section').style.background = 'white';
     document.getElementById('tier0Section').style.pointerEvents = 'auto';
 
     gateFlags = [];
@@ -1811,7 +1813,7 @@ function renderOffboardCardInputs() {
             const id = cat + '_' + idx;
             html += `<div style="border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem 1rem; background: #f8fafc;">
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <span style="color: ${data.hex}; font-size: 1rem;">${data.shape}</span>
+                    <span style="color: ${data.textHex || data.hex}; font-size: 1rem;">${data.shape}</span>
                     <span style="font-weight: 600; color: #1e293b; font-size: 0.875rem;">${ex.name}</span>
                 </div>
                 <div class="mob-stack" style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 0.5rem; align-items: end;">
@@ -1828,7 +1830,7 @@ function renderOffboardCardInputs() {
                         <input type="number" id="offR_${id}_2" min="0" max="5" step="0.1" placeholder="ratio" style="width: 100%; padding: 0.375rem; border: 1px solid #cbd5e1; border-radius: 0.375rem; font-size: 0.8125rem; box-sizing: border-box;" />
                     </div>
                     <label style="display: flex; align-items: center; gap: 0.375rem; font-size: 0.75rem; color: #475569; white-space: nowrap; padding-bottom: 0.25rem;">
-                        <input type="checkbox" id="offRecal_${id}" style="accent-color: ${data.hex};" />
+                        <input type="checkbox" id="offRecal_${id}" style="accent-color: ${data.textHex || data.hex};" />
                         Recalibrated
                     </label>
                 </div>
@@ -2098,15 +2100,15 @@ function showFacilitatorPanel(state) {
             <div id="gapOptions" style="display: flex; flex-direction: column; gap: 0.5rem;">
                 <div id="gapOpt_access" style="border: 2px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem; cursor: pointer; font-size: 0.875rem; transition: all 0.15s;" onclick="selectGapReason('access')">
                     <strong style="color: #1e293b;">Access barrier</strong> <span style="color: #64748b;">— transport, carer availability, technology</span>
-                    <div style="font-size: 0.75rem; color: #10b981; margin-top: 0.25rem;">Resolution: Resume — no state change. Flag cleared.</div>
+                    <div style="font-size: 0.75rem; color: #047857; margin-top: 0.25rem;">Resolution: Resume — no state change. Flag cleared.</div>
                 </div>
                 <div id="gapOpt_choice" style="border: 2px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem; cursor: pointer; font-size: 0.875rem; transition: all 0.15s;" onclick="selectGapReason('choice')">
                     <strong style="color: #1e293b;">Participant or carer choice</strong>
-                    <div style="font-size: 0.75rem; color: #f59e0b; margin-top: 0.25rem;">Resolution: Resume or WITHDRAWN (facilitator determines)</div>
+                    <div style="font-size: 0.75rem; color: #b45309; margin-top: 0.25rem;">Resolution: Resume or WITHDRAWN (facilitator determines)</div>
                 </div>
                 <div id="gapOpt_transfer" style="border: 2px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem; cursor: pointer; font-size: 0.875rem; transition: all 0.15s;" onclick="selectGapReason('transfer')">
                     <strong style="color: #1e293b;">Care setting transfer</strong>
-                    <div style="font-size: 0.75rem; color: #f59e0b; margin-top: 0.25rem;">Resolution: Resume in new setting, RE-GATE if clinical change suspected, or WITHDRAWN</div>
+                    <div style="font-size: 0.75rem; color: #b45309; margin-top: 0.25rem;">Resolution: Resume in new setting, RE-GATE if clinical change suspected, or WITHDRAWN</div>
                 </div>
                 <div id="gapOpt_clinical" style="border: 2px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem; cursor: pointer; font-size: 0.875rem; transition: all 0.15s;" onclick="selectGapReason('clinical')">
                     <strong style="color: #1e293b;">Clinical event</strong> <span style="color: #64748b;">— acute admission, illness</span>
@@ -2146,7 +2148,7 @@ function confirmPlateauAction() {
         [notes ? 'Facilitator notes: ' + notes : 'No facilitator notes recorded.'],
         []);
     if (selectedPlateauOption === 'B') {
-        document.getElementById('offFacPanelContent').innerHTML = '<div style="background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 0.5rem; padding: 1rem; font-size: 0.875rem; color: #4338ca;"><strong>Decision recorded: Modify goals.</strong> Go to <a href="#" onclick="showPage(\'cardOptions\');return false;" style="color: #6366f1; font-weight: 600;">Card Options</a> to adjust goals on plateau cards.</div>';
+        document.getElementById('offFacPanelContent').innerHTML = '<div style="background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 0.5rem; padding: 1rem; font-size: 0.875rem; color: #4338ca;"><strong>Decision recorded: Modify goals.</strong> Go to <a href="#" onclick="showPage(\'cardOptions\');return false;" style="color: #4338ca; font-weight: 600;">Card Options</a> to adjust goals on plateau cards.</div>';
     } else if (selectedPlateauOption === 'C') {
         document.getElementById('offFacPanelContent').innerHTML = '<div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 0.5rem; padding: 1rem; font-size: 0.875rem; color: #991b1b;"><strong>Decision recorded: Suspend and review.</strong> Program suspended. Clinical review (SP, OT, or treating team) recommended for plateau domains.</div>';
     } else {
