@@ -51,13 +51,13 @@
         </div>
         <button id="mobileMenuBtn" onclick="document.getElementById('navLinks').classList.toggle('open')">&#9776;</button>
         <div id="navLinks">
-            <button onclick="showPage('onboarding');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="onboardingBtn">Onboarding</button>
-            <button onclick="showPage('dashboard');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="dashboardBtn">Select Bed</button>
-            <button onclick="showPage('create');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="createBtn">Print Cards</button>
-            <button onclick="showPage('tracking');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="trackingBtn">Tracking Sheet</button>
-            <button onclick="showPage('cardOptions');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="cardOptionsBtn">Card Options</button>
-            <button onclick="showPage('help');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="helpBtn">Help</button>
-            <button onclick="showPage('offboarding');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.2s;" id="offboardingBtn">Offboarding</button>
+            <button onclick="showPage('onboarding');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="onboardingBtn">Onboarding</button>
+            <button onclick="showPage('dashboard');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="dashboardBtn">Select Bed</button>
+            <button onclick="showPage('cardOptions');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="cardOptionsBtn">Card Options</button>
+            <button onclick="showPage('create');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="createBtn">Print Cards</button>
+            <button onclick="showPage('tracking');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="trackingBtn">Tracking Sheet</button>
+            <button onclick="showPage('help');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="helpBtn">Help</button>
+            <button onclick="showPage('offboarding');document.getElementById('navLinks').classList.remove('open')" style="padding: 0.5rem 1rem; background: transparent; border: none; color: #64748b; cursor: pointer; font-weight: 500; font-size: 1.05rem; border-bottom: 3px solid transparent; transition: all 0.2s;" id="offboardingBtn">Offboarding</button>
         </div>
     </div>
 </nav>
@@ -66,7 +66,7 @@
 <div id="onboardingPage" class="mob-page" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 900px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Participant Onboarding</h1>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">Participant Onboarding</h1>
             <p style="color: #64748b; margin: 0;">Suitability routing calculator — determines card set level and format adaptations</p>
         </div>
 
@@ -324,7 +324,7 @@
 <div id="dashboardPage" class="mob-page" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 1200px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Select Bed</h1>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">Select Bed</h1>
             <p style="color: #64748b; margin: 0;">Select a bed number to manage recovery card sets</p>
         </div>
 
@@ -380,7 +380,7 @@
 <div id="createPage" class="mob-page" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 900px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Create Recovery Card Set</h1>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">Create Recovery Card Set</h1>
             <p style="color: #64748b; margin: 0;">Customize exercises for your patient's recovery program</p>
         </div>
 
@@ -447,7 +447,7 @@
     <div style="max-width: 100%; margin: 0 auto; padding: 0 1rem;">
         <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div>
-                <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Monthly Tracking Sheet</h1>
+                <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">Monthly Tracking Sheet</h1>
                 <p style="color: #64748b; margin: 0;">Print this sheet to track daily exercise completion for the month</p>
             </div>
             <button onclick="printTrackingSheet();" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 1rem;">Print Tracking Sheet</button>
@@ -503,7 +503,7 @@
 <div id="cardOptionsPage" class="mob-page" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 900px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Card Options</h1>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">Card Options</h1>
             <p style="color: #64748b; margin: 0;">View and edit exercise cards, steps, and settings</p>
         </div>
 
@@ -560,7 +560,7 @@
 <!-- Help Page -->
 <div id="helpPage" class="mob-page" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 800px; margin: 0 auto;">
-        <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 2rem 0;">How Stroke Recovery Cards Work</h1>
+        <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">How Stroke Recovery Cards Work</h1>
 
         <div style="background: white; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1.5rem;">
             <h3 style="font-size: 1.125rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">What are Stroke Recovery Cards?</h3>
@@ -695,7 +695,7 @@
 <div id="offboardingPage" class="mob-page" style="display: none; padding: 2rem 1rem;">
     <div style="max-width: 900px; margin: 0 auto;">
         <div style="margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0 0 0.5rem 0;">Offboarding</h1>
+            <h1 style="font-size: 2rem; font-weight: 700; color: #1e293b; margin: 0.75rem 0 1rem 0;">Offboarding</h1>
             <p style="color: #64748b; margin: 0;">Evaluate exit conditions, transition states, and program closure</p>
         </div>
 
@@ -1143,24 +1143,24 @@ function generateAndPrint() {
         Object.entries(exercises).forEach(([cat, data]) => {
             data.list.forEach((ex, idx) => {
                 if (!largeCardSelections[cat][idx]) return;
-                const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 5vh; color: #1e293b; margin-bottom: 1vh;">${i+1}. ${s}</div>`).join('');
+                const stepsHtml = ex.steps.map((s, i) => `<div style="font-size: 3.5vh; color: #1e293b; margin-bottom: 0.75vh;">${i+1}. ${s}</div>`).join('');
                 pages += `<div style="page-break-after: always; width: 100vw; height: 100vh; box-sizing: border-box; padding: 3vh 3vw; display: flex; flex-direction: column; overflow: hidden;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3vh;">
                         <div style="display: flex; align-items: center; gap: 1.5vw;">
-                            <span style="font-size: 10vh; color: ${data.textHex || data.hex}; line-height: 1;">${data.shape}</span>
+                            <span style="font-size: 7vh; color: ${data.textHex || data.hex}; line-height: 1;">${data.shape}</span>
                             <div>
-                                <div style="font-size: 7vh; font-weight: 700; color: ${data.textHex || data.hex}; text-transform: uppercase;">${data.title}</div>
-                                <div style="font-size: 6vh; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
+                                <div style="font-size: 5vh; font-weight: 700; color: ${data.textHex || data.hex}; text-transform: uppercase;">${data.title}</div>
+                                <div style="font-size: 4.5vh; font-weight: 700; color: #1e293b; text-transform: uppercase;">${ex.name}</div>
                             </div>
                         </div>
                         <div style="text-align: center; flex-shrink: 0;">
-                            <div style="font-size: 4vh; font-weight: 700; color: ${data.textHex || data.hex};">GOAL</div>
-                            <div style="width: 10vh; height: 10vh; border: 4px solid ${data.hex}; margin-top: 0.5vh;"></div>
+                            <div style="font-size: 3vh; font-weight: 700; color: ${data.textHex || data.hex};">GOAL</div>
+                            <div style="width: 8vh; height: 8vh; border: 4px solid ${data.hex}; margin-top: 0.5vh;"></div>
                         </div>
                     </div>
                     <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
                         ${stepsHtml}
-                        <div style="font-size: 5vh; font-weight: 700; color: ${data.textHex || data.hex}; margin-top: 2vh;">REPEAT until GOAL</div>
+                        <div style="font-size: 3.5vh; font-weight: 700; color: ${data.textHex || data.hex}; margin-top: 2vh;">REPEAT until GOAL</div>
                     </div>
                 </div>`;
             });
