@@ -24,21 +24,21 @@ After stroke, recovery depends on consistent exercise. But accessing rehabilitat
 
 ### Browser (No Installation)
 
-1. Open `web/index.html` in any browser
+1. Visit [bayanimills.github.io/SRP-Cards---Stroke-Recovery-Program-Cards](https://bayanimills.github.io/SRP-Cards---Stroke-Recovery-Program-Cards/web/index.html) or open `web/index.html` locally
 2. Create a personalized exercise program in 5 minutes
 3. Print, laminate, track progress
 
 ### Command Line
 
 ```bash
-# Install dependencies
-pip install -r requirements.txt
+# Install (includes CLI entry point)
+pip install -e .
 
 # Generate card set: 4 cards on 1 page
-python3 cli/exercise-sheet -1 hand_0 -2 shoulder_1 -3 arm_2 -4 leg_0 -o output.pdf
+exercise-sheet -1 hand_0 -2 shoulder_1 -3 arm_2 -4 leg_0 -o output.pdf
 
 # Generate large cards: 1 per page (2x size, easier to read)
-python3 cli/exercise-sheet -1 hand_0 -2 shoulder_1 -3 arm_2 -4 leg_0 --layout single -o output.pdf
+exercise-sheet -1 hand_0 -2 shoulder_1 -3 arm_2 -4 leg_0 --layout single -o output.pdf
 ```
 
 ## Exercise Library
@@ -75,22 +75,28 @@ Standardize exercise delivery across your facility. Generate customized cards fo
 srp-cards/
 ├── README.md                 # This file
 ├── LICENSE                   # MIT License
+├── pyproject.toml            # Package config & CLI entry point
 ├── requirements.txt          # Python dependencies
-├── .gitignore               # Git ignore rules
-│
-├── cli/
-│   └── exercise-sheet       # Python CLI tool
+├── index.html                # Root redirect → web/index.html
 │
 ├── web/
-│   ├── index.html   # Caregiver interface (primary)
-│   ├── system.html          # Admin documentation
-│   └── index.html           # Developer tool
+│   ├── index.html            # Caregiver web interface (primary)
+│   └── system.html           # Admin documentation
+│
+├── cli/
+│   └── exercise_sheet.py     # Python CLI tool
+│
+├── tests/
+│   ├── test_exercise_sheet.py
+│   └── test_web_interface.py
 │
 ├── docs/
-│   ├── GITHUB_SETUP.md      # Setup guide
-│   └── QUICK_PUSH.md        # Quick reference
+│   ├── GITHUB_SETUP.md       # Setup guide
+│   └── QUICK_PUSH.md         # Quick reference
 │
-└── examples/                # Sample outputs
+├── examples/                  # Sample outputs
+│
+└── .github/workflows/         # CI & GitHub Pages deployment
 ```
 
 ## Installation
@@ -107,8 +113,8 @@ srp-cards/
 git clone https://github.com/bayanimills/SRP-Cards---Stroke-Recovery-Program-Cards.git
 cd SRP-Cards---Stroke-Recovery-Program-Cards
 
-pip install -r requirements.txt
-chmod +x cli/exercise-sheet
+# Install package with CLI tool
+pip install -e .
 
 # Open caregiver interface
 open web/index.html
@@ -166,8 +172,6 @@ Contributions welcome! Please:
 MIT License. See [LICENSE](LICENSE) file for details.
 
 ## Credits
-
-Built by **P&L Dwyer Engineering** in partnership with **Australian Bitcoin Industry Body (ABIB)**.
 
 Designed with an accessibility-first approach for post-stroke rehabilitation.
 
